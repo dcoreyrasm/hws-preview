@@ -322,3 +322,47 @@ footer { background: var(--page-bg); padding: 76px 24px 40px; border-top: 1px so
 .foot-nav { display: flex; gap: 20px; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; }
 .foot-nav a { text-decoration: none; color: var(--text-muted); transition: color 0.25s ease; }
 .foot-nav a:hover { color: var(--gold-dim); }
+
+/* ---------- Bracketed "to be decided" values (visible, easy to spot) ---------- */
+.tbd { color: var(--gold-dim); font-style: italic; font-weight: 500; white-space: nowrap; }
+[data-theme="dark"] .tbd { color: var(--gold-soft); }
+
+/* ---------- Policies page ---------- */
+.policy-wrap { padding: 20px 24px 110px; background: var(--page-bg); }
+.policy-intro { max-width: 720px; margin: 0 auto 46px; text-align: center; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+.policy-list { max-width: 780px; margin: 0 auto; display: grid; gap: 18px; }
+.policy-item { background: var(--section-alt); border: 1px solid var(--line-soft); padding: 30px 34px; }
+.policy-item h2 { font-size: 1.12rem; letter-spacing: 0.01em; margin-bottom: 12px; }
+.policy-item p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.72; margin: 0 0 12px; }
+.policy-item p:last-child { margin-bottom: 0; }
+.policy-note { max-width: 780px; margin: 40px auto 0; text-align: center; font-size: 0.85rem; color: var(--text-muted); padding: 0 24px; }
+
+/* ---------- Referral page ---------- */
+.referral-wrap { padding: 20px 24px 110px; background: var(--page-bg); }
+.referral-lead { max-width: 640px; margin: 0 auto 46px; text-align: center; color: var(--text-muted); font-size: 1rem; line-height: 1.75; }
+.referral-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 760px) { .referral-grid { grid-template-columns: 1fr; max-width: 520px; } }
+.referral-card { background: var(--section-alt); border: 1px solid var(--line-soft); padding: 40px; }
+.referral-card .eyebrow { display: block; margin-bottom: 14px; }
+.referral-card h2 { font-size: 1.15rem; margin-bottom: 14px; }
+.referral-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; margin: 0; }
+.referral-close { max-width: 640px; margin: 44px auto 0; text-align: center; font-family: 'Fraunces', serif; font-style: italic; font-size: 1.1rem; color: var(--text-main); }
+
+/* ---------- Waitlist page ---------- */
+.waitlist-wrap { padding: 20px 24px 110px; background: var(--page-bg); }
+.waitlist-lead { max-width: 620px; margin: 0 auto 40px; text-align: center; color: var(--text-muted); font-size: 1rem; line-height: 1.75; }
+.waitlist-card { max-width: 620px; margin: 0 auto; background: var(--section-alt); border: 1px solid var(--line-soft); padding: 44px 42px; }
+.wl-field { margin-bottom: 18px; }
+.wl-field label { display: block; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 8px; }
+.wl-field input, .wl-field select {
+  width: 100%; padding: 13px 14px; background: var(--page-bg); border: 1px solid var(--line);
+  color: var(--text-main); font-family: 'Inter', sans-serif; font-size: 0.92rem;
+  border-radius: 0; transition: border-color 0.25s ease;
+}
+.wl-field input:focus, .wl-field select:focus { outline: none; border-color: var(--gold); }
+.waitlist-card .btn-primary { width: 100%; text-align: center; margin-top: 6px; border: none; cursor: pointer; }
+.wl-confirm { display: none; text-align: center; padding: 8px 0; }
+.wl-confirm.show { display: block; }
+.wl-confirm .mono { margin: 0 auto 20px; border-color: var(--gold); }
+.wl-confirm p { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.15rem; color: var(--text-main); line-height: 1.5; margin: 0; }
+.waitlist-note { max-width: 620px; margin: 30px auto 0; text-align: center; font-size: 0.82rem; color: var(--text-muted); padding: 0 8px; }
