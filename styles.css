@@ -355,6 +355,7 @@ footer { background: var(--page-bg); padding: 76px 24px 40px; border-top: 1px so
 .foot-social { display: flex; gap: 14px; }
 .foot-social a { width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--gold-dim); transition: border-color 0.25s ease, color 0.25s ease; }
 .foot-social a:hover { border-color: var(--gold); color: var(--gold); }
+.foot-social a svg { width: 16px; height: 16px; }
 .foot-contact { font-size: 0.87rem; color: var(--text-muted); display: grid; gap: 14px; }
 .foot-contact .lbl { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dim); display: block; margin-bottom: 4px; }
 .foot-bottom { max-width: var(--max); margin: 52px auto 0; padding-top: 28px; border-top: 1px solid var(--line-soft); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 0.77rem; color: var(--text-muted); }
