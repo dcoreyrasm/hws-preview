@@ -1,0 +1,7 @@
+# HWS by Danielle
+# Note: crawlers only read robots.txt from a domain root (e.g. example.com/robots.txt),
+# so this file becomes fully effective once the site lives at its own domain root.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.daricecorey.com/hws-preview/sitemap.xml
