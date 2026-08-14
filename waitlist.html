@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Waitlist — HWS by Danielle</title>
+<meta name="description" content="Join the waitlist at HWS by Danielle, a private one-on-one hair studio with intentionally limited availability." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://www.daricecorey.com/hws-preview/waitlist.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HWS by Danielle">
+<meta property="og:title" content="Waitlist — HWS by Danielle">
+<meta property="og:description" content="Join the waitlist at HWS by Danielle, a private one-on-one hair studio with intentionally limited availability.">
+<meta property="og:url" content="https://www.daricecorey.com/hws-preview/waitlist.html">
+<meta property="og:image" content="https://www.daricecorey.com/hws-preview/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Waitlist — HWS by Danielle">
+<meta name="twitter:description" content="Join the waitlist at HWS by Danielle, a private one-on-one hair studio with intentionally limited availability.">
+<meta name="twitter:image" content="https://www.daricecorey.com/hws-preview/og-image.jpg">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="motion.css">
+<script src="theme.js"></script>
+<script src="motion.js"></script>
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <span class="mono"><svg viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg></span>
+      <div class="wordmark">HWS<small>by Danielle</small></div>
+    </a>
+    <ul class="nav-links" id="primary-nav">
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="experience.html">The Experience</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li class="reserve-item"><a href="https://hwsbydanni.as.me" target="_blank" rel="noopener">Reserve Appointment</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></svg>
+      </button>
+      <a class="nav-cta" href="https://hwsbydanni.as.me" target="_blank" rel="noopener">Reserve Appointment</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
+        <svg class="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+<section class="page-banner">
+  <span class="eyebrow">The Waitlist</span>
+  <h1>Currently Booking a Limited Number of <em>Private Clients</em></h1>
+  <p>Because every appointment is one-on-one, availability is intentionally limited.</p>
+</section>
+
+<section class="waitlist-wrap">
+  <p class="waitlist-lead">Join the waitlist below and you'll be the first to know when a spot opens.</p>
+  <div class="waitlist-card">
+    <!--
+      FORM BACKEND NOT YET CONNECTED.
+      This form is a preview: on submit it shows the confirmation message but does
+      NOT send the entry anywhere. To collect real submissions, connect a form
+      service (Formspree is the natural fit for a static site) and:
+        1. set  action="https://formspree.io/f/{YOUR_FORM_ID}"  and  method="POST"
+           on the <form> below, and
+        2. remove the preventDefault() in the script at the bottom of this page
+           (or keep the AJAX handler and post to the endpoint).
+      Do not wire a specific Formspree account without Danielle/Darice's go-ahead.
+    -->
+    <form id="waitlistForm" novalidate>
+      <div class="wl-field">
+        <label for="wl-name">Name</label>
+        <input type="text" id="wl-name" name="name" autocomplete="name" required>
+      </div>
+      <div class="wl-field">
+        <label for="wl-email">Email</label>
+        <input type="email" id="wl-email" name="email" autocomplete="email" required>
+      </div>
+      <div class="wl-field">
+        <label for="wl-phone">Phone</label>
+        <input type="tel" id="wl-phone" name="phone" autocomplete="tel">
+      </div>
+      <div class="wl-field">
+        <label for="wl-service">Service Interested In</label>
+        <select id="wl-service" name="service">
+          <option value="">Select a service…</option>
+          <option>Traditional Sew-In</option>
+          <option>Versatile Sew-In</option>
+          <option>Weave / Extensions</option>
+          <option>Wig</option>
+          <option>Silk Press</option>
+          <option>Not sure yet — help me decide</option>
+        </select>
+      </div>
+      <div class="wl-field">
+        <label for="wl-timeframe">Preferred Timeframe</label>
+        <select id="wl-timeframe" name="timeframe">
+          <option value="">Select a timeframe…</option>
+          <option>As soon as possible</option>
+          <option>Within the next month</option>
+          <option>In 1–3 months</option>
+          <option>I'm flexible</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-primary">Join the Waitlist</button>
+      <p class="wl-privacy">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+        Your details are private and go only to Danielle &mdash; never shared or posted.
+      </p>
+    </form>
+    <div class="wl-confirm" id="wlConfirm" role="status" aria-live="polite">
+      <span class="mono"><svg viewBox="0 0 24 24"><path d="M6 12l4 4 8-9" stroke="#C69A54" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <p>You're on the list. I'll reach out personally as soon as a private appointment opens up.</p>
+    </div>
+  </div>
+  <p class="waitlist-note">This is a preview of the waitlist. Sign-ups aren't switched on just yet &mdash; once they are, your entry comes straight to Danielle and no one else.</p>
+</section>
+<section class="final-cta">
+  <div class="final-inner">
+    <div class="final-text">
+      <span class="eyebrow">Prefer to Book Now?</span>
+      <h2>Openings do <em>happen</em>.</h2>
+      <p>If a time is already available, you can reserve it directly rather than waiting.</p>
+      <a class="btn-primary" href="https://hwsbydanni.as.me" target="_blank" rel="noopener">Check Availability</a>
+    </div>
+    <div class="final-photo"><img src="hero-portrait.jpg" alt="Danielle, owner of Hair Weaving Solutions"></div>
+  </div>
+</section>
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="foot-brand">
+        <span class="mono"><svg viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg></span>
+        <span class="foot-word">HWS by Danielle</span>
+      </div>
+      <p class="foot-blurb">Helping women achieve fuller, healthier, and more beautiful hair through expert weaving, extensions, wigs, silk presses, and customized hair solutions for over 27 years.</p>
+      <div class="foot-social">
+        <a href="#" aria-label="Twitter">𝕏</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+    <div class="foot-contact">
+      <div><span class="lbl">Booking</span>hwsbydanni.as.me</div>
+      <div><span class="lbl">Hours</span>Tue&ndash;Fri 10:00 AM&ndash;6:00 PM &middot; Sat&ndash;Sun 8:00 AM&ndash;3:00 PM</div>
+      <div><span class="lbl">Location</span>Bridgeport, CT &middot; Private studio, by appointment only</div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <ul class="foot-nav">
+      <li><a href="about.html">About</a></li>
+      <li><a href="gallery.html">Transformations</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="reviews.html">Testimonials</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="policies.html">Policies</a></li>
+      <li><a href="referral.html">Referral</a></li>
+      <li><a href="waitlist.html">Waitlist</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div>&copy; 2026 Hair Weaving Solutions By Danielle. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // Preview-only handler: shows the confirmation without sending anywhere.
+  // See the comment above the form for how to connect a real form backend.
+  (function () {
+    var form = document.getElementById('waitlistForm');
+    var confirm = document.getElementById('wlConfirm');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('wl-name');
+      var email = document.getElementById('wl-email');
+      if (!name.value.trim() || !email.value.trim()) {
+        (name.value.trim() ? email : name).focus();
+        return;
+      }
+      form.style.display = 'none';
+      confirm.classList.add('show');
+      confirm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  })();
+</script>
+</body>
+</html>
