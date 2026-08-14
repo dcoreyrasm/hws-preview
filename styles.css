@@ -306,6 +306,8 @@ header { position: sticky; top: 0; z-index: 50; background: rgba(14, 14, 15, 0.9
 .review-quote.is-placeholder { color: var(--text-muted); }
 .review-name.is-placeholder { opacity: 0.7; }
 .reviews-note { max-width: 640px; margin: 44px auto 0; text-align: center; font-size: 0.85rem; color: var(--text-muted); padding: 0 24px; }
+.reviews-note a { color: var(--teal-accent); border-bottom: 1px solid currentColor; text-decoration: none; }
+.reviews-note a:hover { color: var(--gold); }
 
 /* ---------- FAQ accordion ---------- */
 .faq-wrap { padding: 20px 24px 110px; background: var(--page-bg); }
