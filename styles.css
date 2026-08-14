@@ -81,8 +81,43 @@ header { position: sticky; top: 0; z-index: 50; background: rgba(14, 14, 15, 0.9
 .nav-links { display: flex; gap: 28px; font-size: 0.76rem; letter-spacing: 0.05em; list-style: none; margin: 0; padding: 0; text-transform: uppercase; flex: 1; justify-content: center; }
 .nav-links a { text-decoration: none; color: var(--brand-muted); transition: color 0.25s ease; }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--gold-soft); }
-@media (max-width: 980px) { .nav-links { display: none; } }
 .nav-right { display: flex; align-items: center; gap: 14px; }
+
+/* Hamburger button — hidden on desktop, shown when the links collapse */
+.nav-toggle {
+  display: none; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--gold-dim);
+  background: transparent; color: var(--gold-soft); align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0; transition: border-color 0.25s ease, background 0.25s ease;
+}
+.nav-toggle:hover { border-color: var(--gold); background: rgba(198,154,84,0.1); }
+.nav-toggle svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+.nav-toggle .icon-close { display: none; }
+.nav.open .nav-toggle .icon-menu { display: none; }
+.nav.open .nav-toggle .icon-close { display: block; }
+.nav-links .reserve-item { display: none; } /* shown only inside the mobile dropdown */
+
+/* Mobile: links collapse into a dropdown panel under the header */
+@media (max-width: 980px) {
+  .nav { position: relative; flex-wrap: wrap; }
+  .nav-toggle { display: inline-flex; }
+  .nav-links {
+    flex: none; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: #101012; box-shadow: 0 24px 40px -20px rgba(0, 0, 0, 0.6);
+    border-bottom: 1px solid var(--line-soft); padding: 6px 0; margin: 0;
+    max-height: 0; overflow: hidden; opacity: 0; pointer-events: none;
+    transition: max-height 0.38s cubic-bezier(0.16, 0.8, 0.24, 1), opacity 0.3s ease;
+  }
+  .nav-links a { display: block; width: 100%; padding: 15px 40px; font-size: 0.82rem; }
+  .nav.open .nav-links { max-height: 80vh; opacity: 1; pointer-events: auto; }
+  /* Reserve stays in reach inside the menu, emphasized */
+  .nav-links .reserve-item { display: block; margin-top: 4px; border-top: 1px solid var(--line-soft); }
+  .nav-links .reserve-item a { color: var(--gold-soft); font-weight: 600; letter-spacing: 0.08em; }
+}
+@media (max-width: 420px) {
+  .nav { padding-left: 22px; padding-right: 22px; }
+  .nav-cta { display: none; } /* the top-bar CTA gives way to the in-menu Reserve link */
+}
 .nav-cta {
   font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--gold);
   color: var(--gold-soft); padding: 11px 22px; text-decoration: none; font-weight: 600;
