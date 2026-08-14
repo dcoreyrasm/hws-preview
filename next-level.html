@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, follow" />
+<title>Taking HWS to the Next Level</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  :root {
+    --brand-bg: #0E0E0F;
+    --brand-surface: #17181A;
+    --ivory: #F4EFE6;
+    --gold: #C69A54;
+    --gold-soft: #E4C98D;
+    --gold-dim: #8A6E3F;
+    --muted-dark: #A79E92;
+    --teal-dark: #63B7AB;
+
+    --bg-page: #FFFFFF;
+    --bg-alt: #F7F5F1;
+    --bg-card: #FFFFFF;
+    --ink: #1B1C1E;
+    --muted: #5E6163;
+    --line: rgba(198, 154, 84, 0.26);
+    --line-soft: rgba(198, 154, 84, 0.14);
+    --gold-ink: #8A6E3F;
+    --teal: #3C8074;
+    --shadow: 0 1px 2px rgba(23,24,26,0.04), 0 12px 32px -18px rgba(23,24,26,0.18);
+
+    --max: 940px;
+    --font-display: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+    --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg-page: #121213; --bg-alt: #1A1A1C; --bg-card: #1B1B1D;
+      --ink: #F1ECE2; --muted: #A79E92;
+      --line: rgba(198,154,84,0.32); --line-soft: rgba(198,154,84,0.17);
+      --gold-ink: #E4C98D; --teal: #63B7AB;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 14px 34px -18px rgba(0,0,0,0.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg-page: #121213; --bg-alt: #1A1A1C; --bg-card: #1B1B1D;
+    --ink: #F1ECE2; --muted: #A79E92;
+    --line: rgba(198,154,84,0.32); --line-soft: rgba(198,154,84,0.17);
+    --gold-ink: #E4C98D; --teal: #63B7AB;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 14px 34px -18px rgba(0,0,0,0.6);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg-page); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; margin: 0; }
+  em { font-style: italic; color: var(--teal); }
+  p { margin: 0; }
+  a { color: var(--gold-ink); }
+  .eyebrow { font-family: var(--font-body); font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; }
+
+  /* Header */
+  .topband { background: radial-gradient(120% 140% at 82% -10%, rgba(198,154,84,0.14), transparent 60%), linear-gradient(180deg, var(--brand-bg), var(--brand-surface)); color: var(--ivory); padding: 46px 28px 52px; border-bottom: 1px solid rgba(198,154,84,0.22); }
+  .band-inner { max-width: var(--max); margin: 0 auto; }
+  .lockup { display: flex; align-items: center; gap: 13px; margin-bottom: 34px; }
+  .mono { width: 38px; height: 38px; flex: none; border: 1px solid var(--gold-dim); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .mono svg { width: 17px; height: 17px; stroke: var(--gold); fill: none; stroke-width: 1.2; }
+  .wordmark { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.02em; line-height: 1; }
+  .wordmark small { display: block; font-family: var(--font-body); font-size: 0.58rem; letter-spacing: 0.24em; color: var(--gold-soft); text-transform: uppercase; margin-top: 5px; }
+  .topband .eyebrow { color: var(--gold-soft); }
+  .topband h1 { font-size: clamp(2.1rem, 5.6vw, 3.2rem); line-height: 1.05; margin: 13px 0 0; letter-spacing: -0.01em; }
+  .topband h1 em { color: var(--gold-soft); }
+  .lede { max-width: 54ch; margin: 20px 0 0; color: #D9D2C6; font-size: 1.05rem; }
+
+  main { max-width: var(--max); margin: 0 auto; padding: 0 28px 40px; }
+
+  section { margin-top: 48px; }
+  .sec-head .eyebrow { color: var(--gold-ink); }
+  .sec-head h2 { font-size: clamp(1.5rem, 3.6vw, 2.05rem); margin: 10px 0 6px; }
+  .sec-head h2 em { color: var(--teal); }
+  .sec-head .intro { color: var(--muted); font-size: 1rem; margin: 0 0 22px; max-width: 64ch; }
+  .sec-head .intro b { color: var(--ink); font-weight: 600; }
+
+  /* Card grids */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .cards.two { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 720px) { .cards, .cards.two { grid-template-columns: 1fr; } }
+  .card { background: var(--bg-card); border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: 4px; padding: 18px 20px; box-shadow: var(--shadow); }
+  .card.teal { border-left-color: var(--teal); }
+  .card h3 { font-size: 1.08rem; margin-bottom: 7px; }
+  .card p { font-size: 0.9rem; color: var(--muted); }
+  .card p b { color: var(--ink); font-weight: 600; }
+
+  /* Row list (label + text) */
+  .rows { display: flex; flex-direction: column; gap: 8px; }
+  .row { display: flex; gap: 16px; align-items: baseline; background: var(--bg-alt); border: 1px solid var(--line-soft); border-radius: 4px; padding: 14px 18px; }
+  .row .rlabel { flex: none; min-width: 10.5em; font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--gold-ink); }
+  .row .rtext { font-size: 0.92rem; color: var(--muted); }
+  .row .rtext b { color: var(--ink); font-weight: 600; }
+  @media (max-width: 560px) { .row { flex-direction: column; gap: 5px; } .row .rlabel { min-width: 0; } }
+
+  /* Callout (dark emphasis) */
+  .callout { margin-top: 4px; background: var(--brand-surface); color: var(--ivory); border: 1px solid rgba(198,154,84,0.24); border-radius: 6px; padding: 24px 26px; }
+  .callout .eyebrow { color: var(--gold-soft); }
+  .callout h3 { color: var(--ivory); font-size: 1.35rem; margin: 8px 0 8px; font-family: var(--font-display); }
+  .callout h3 em { color: var(--gold-soft); font-style: italic; }
+  .callout p { color: var(--muted-dark); font-size: 0.96rem; }
+  .callout p + p { margin-top: 10px; }
+  .callout p b { color: var(--ivory); font-weight: 600; }
+
+  /* Rings (numbered stacked cards) */
+  .ring { display: flex; gap: 18px; background: var(--bg-card); border: 1px solid var(--line); border-radius: 6px; padding: 22px 24px; box-shadow: var(--shadow); margin-top: 14px; }
+  .ring-num { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold-ink); font-family: var(--font-display); font-size: 1.2rem; display: flex; align-items: center; justify-content: center; }
+  .ring-body { flex: 1; min-width: 0; }
+  .ring-body h3 { font-size: 1.18rem; margin-bottom: 3px; }
+  .ring-body .tag { display: inline-block; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--teal); border: 1px solid var(--teal); border-radius: 100px; padding: 3px 9px; margin-bottom: 10px; }
+  .ring-body > p { font-size: 0.94rem; color: var(--muted); margin-bottom: 12px; }
+  .ring-body > p b { color: var(--ink); font-weight: 600; }
+  @media (max-width: 560px) { .ring { flex-direction: column; gap: 12px; padding: 20px; } }
+
+  /* Who-to-approach list */
+  .who { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 20px; margin: 4px 0 0; padding: 0; list-style: none; }
+  @media (max-width: 560px) { .who { grid-template-columns: 1fr; } }
+  .who li { position: relative; padding-left: 20px; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+  .who li b { color: var(--ink); font-weight: 600; }
+  .who li::before { content: ""; position: absolute; left: 2px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+  .find { margin-top: 16px; border-top: 1px solid var(--line-soft); padding-top: 16px; }
+  .find h4 { font-size: 1rem; margin-bottom: 8px; }
+  .find ul { margin: 0; padding-left: 20px; }
+  .find li { font-size: 0.9rem; color: var(--muted); margin: 7px 0; line-height: 1.55; }
+  .find li b { color: var(--ink); font-weight: 600; }
+
+  /* Choices */
+  .choice { background: var(--bg-alt); border: 1px solid var(--line-soft); border-left: 3px solid var(--teal); border-radius: 4px; padding: 15px 18px; }
+  .choice h4 { font-size: 0.98rem; margin-bottom: 4px; }
+  .choice p { font-size: 0.88rem; color: var(--muted); }
+  .choice p b { color: var(--ink); font-weight: 600; }
+
+  /* Checklist */
+  .checklist { display: flex; flex-direction: column; gap: 12px; counter-reset: step; }
+  .check-item { display: flex; gap: 16px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--line); border-left: 3px solid var(--teal); border-radius: 4px; padding: 16px 20px; box-shadow: var(--shadow); }
+  .check-item::before { counter-increment: step; content: counter(step); flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--teal); color: #fff; font-family: var(--font-display); font-size: 0.95rem; display: flex; align-items: center; justify-content: center; }
+  .check-item p { font-size: 0.94rem; color: var(--muted); }
+  .check-item p b { color: var(--ink); font-weight: 600; }
+
+  .note { margin-top: 16px; font-size: 0.9rem; color: var(--muted); background: var(--bg-alt); border: 1px solid var(--line-soft); border-radius: 4px; padding: 14px 18px; }
+  .note b { color: var(--ink); font-weight: 600; }
+
+  /* Footer */
+  .foot { background: var(--bg-alt); border-top: 1px solid var(--line); margin-top: 52px; }
+  .foot-inner { max-width: var(--max); margin: 0 auto; padding: 40px 28px 48px; }
+  .foot h2 { font-size: clamp(1.3rem, 3.2vw, 1.7rem); }
+  .foot h2 em { color: var(--gold-ink); }
+  .foot p { max-width: 62ch; color: var(--muted); margin: 12px 0 0; }
+  .foot .links { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .foot .links a { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--gold-ink); border: 1px solid var(--gold); background: transparent; padding: 10px 18px; border-radius: 100px; text-decoration: none; }
+  .foot .links a:hover { background: var(--gold); color: var(--brand-bg); }
+
+  .rise { opacity: 0; transform: translateY(14px); animation: rise 0.7s cubic-bezier(0.2,0.7,0.2,1) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .rise { animation: none; opacity: 1; transform: none; } html { scroll-behavior: auto; } }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<header class="topband">
+  <div class="band-inner">
+    <div class="lockup rise">
+      <span class="mono"><svg viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg></span>
+      <div class="wordmark">HWS<small>by Danielle</small></div>
+    </div>
+    <p class="eyebrow rise" style="animation-delay:.05s">For Danielle &middot; Private &middot; The growth plan</p>
+    <h1 class="rise" style="animation-delay:.1s">Taking HWS to the <em>next level</em></h1>
+    <p class="lede rise" style="animation-delay:.18s">You already have the studio, the craft, and a website that speaks to exactly the right client. This is the plan for turning it into <em>the</em> name high-end clients quietly pass to one another &mdash; written in plain language, built from everything we&rsquo;ve mapped out together. Nothing here has to happen all at once.</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- 1. Start from strength -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Where you already win</span>
+      <h2>Start from <em>strength</em></h2>
+      <p class="intro">Three things are already working in your favor. The plan protects and builds on these &mdash; it doesn&rsquo;t replace them.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><h3>Google &amp; your reviews</h3><p>Your <b>4.8&#9733; from 72 reviews</b> is how most brand-new clients find you &mdash; and it&rsquo;s your single strongest channel. Every new happy client keeps it compounding.</p></div>
+      <div class="card"><h3>Your content library</h3><p>Years of real transformation photos and clips. That&rsquo;s not a gap to fill &mdash; it&rsquo;s a library to <b>re-use</b>, a little at a time, across your pages.</p></div>
+      <div class="card teal"><h3>Your referral network</h3><p>Clients who already guard your availability and send you the right people. <b>This is the seed of everything below</b> &mdash; the whole plan grows from it.</p></div>
+    </div>
+  </section>
+
+  <!-- 2. What next level means -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">The shift</span>
+      <h2>What &ldquo;next level&rdquo; <em>actually means</em></h2>
+      <p class="intro">Moving from <b>&ldquo;a salon that markets everything&rdquo;</b> to <b>&ldquo;a private studio you get introduced to.&rdquo;</b> The website already sets this tone; a few tidy-up moves make the rest of your presence match it.</p>
+    </div>
+    <div class="rows">
+      <div class="row"><span class="rlabel">One name, one story</span><span class="rtext">Use <b>Hair Weaving Solutions by Danielle</b> everywhere, and let the old Weebly / Hartford / Square listings come down or redirect &mdash; so nothing a new client finds contradicts the studio they&rsquo;re about to walk into.</span></div>
+      <div class="row"><span class="rlabel">A tidy shop window</span><span class="rtext">A dedicated <b>Facebook Business Page</b> (separate from your personal profile), and tightening who your Instagram follows so it reads as <b>in demand</b>, not chasing.</span></div>
+      <div class="row"><span class="rlabel">Let the site qualify</span><span class="rtext">Your Contact page already asks the right questions, so the people who reach out are <b>already a fit</b> &mdash; you spend your time on the right consultations, not every inquiry.</span></div>
+      <div class="row"><span class="rlabel">Speak with confidence</span><span class="rtext">A calm, aspirational tagline instead of &ldquo;book online&rdquo; &mdash; e.g. <b>&ldquo;Private Studio. Effortless Hair.&rdquo;</b> (yours to choose).</span></div>
+    </div>
+  </section>
+
+  <!-- 3. Mailing list engine -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Your quiet growth engine</span>
+      <h2>Your mailing list, working <em>while you work</em></h2>
+      <p class="intro">One client list (in <b>MailerLite</b>), gently sorted into a few groups, so every message lands as if it were written just for that person &mdash; never a blast. Here&rsquo;s how each group is looked after:</p>
+    </div>
+    <div class="rows">
+      <div class="row"><span class="rlabel">New inquiries</span><span class="rtext">From the website&rsquo;s fit-form &mdash; a warm three-note welcome: a <b>free care-guide gift</b>, then what makes your studio different, then a gentle &ldquo;spots are limited.&rdquo; (Already set up in MailerLite.)</span></div>
+      <div class="row"><span class="rlabel">First-time clients</span><span class="rtext">About a week after their visit, their <b>care packet matched to the exact service</b> they had &mdash; plus a nudge to book the 3-week maintenance <em>before</em> your calendar fills.</span></div>
+      <div class="row"><span class="rlabel">Regulars</span><span class="rtext">Seasonal notes, and a friendly <b>rebooking reminder every 6&ndash;8 weeks</b> so touch-ups never quietly lapse.</span></div>
+      <div class="row"><span class="rlabel">Haven&rsquo;t seen lately</span><span class="rtext">A soft <b>&ldquo;it&rsquo;s been a while&rdquo;</b> note &mdash; no pressure, just an open door back.</span></div>
+      <div class="row"><span class="rlabel">Clients who refer</span><span class="rtext">A private <b>thank-you and their reward</b> once the person they sent completes a first appointment.</span></div>
+      <div class="row"><span class="rlabel">Waitlist</span><span class="rtext">First to hear when <b>a spot opens</b> &mdash; which keeps the &ldquo;worth the wait&rdquo; feeling intact.</span></div>
+      <div class="row"><span class="rlabel">Your inner circle / VIPs</span><span class="rtext">Your most trusted clients &mdash; and your <b>&ldquo;WEAVE WHERE&rdquo; members</b>, if that&rsquo;s still running &mdash; get priority booking windows and the most personal touch.</span></div>
+    </div>
+    <p class="note"><b>New groups are easy to add</b> as you go &mdash; Bridal, paid <b>Inner Circle</b> members, free care-guide subscribers, whatever you already keep in your head. And you barely touch any of it: your three Claude skills draft these <b>in your voice</b> (newsletter &amp; promos, review replies, re-booking), and Darice sets up the timing so the right note goes to the right group automatically.</p>
+  </section>
+
+  <!-- 4. Reaching high-end clientele -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">The big one</span>
+      <h2>Getting in front of <em>high-end clients</em> &mdash; and the people who look after them</h2>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">The principle</span>
+      <h3>You don&rsquo;t advertise your way to this client. You get <em>introduced</em>.</h3>
+      <p>Discretion is the product &mdash; so the way you grow has to match it. This isn&rsquo;t billboards or boosted posts. It&rsquo;s <b>personal, selective, and quiet</b>: a few warm introductions at a time, from people who already have this client&rsquo;s trust. Done right, being &ldquo;hard to find&rdquo; becomes part of the appeal.</p>
+    </div>
+
+    <div class="ring">
+      <div class="ring-num">1</div>
+      <div class="ring-body">
+        <span class="tag">Start here &middot; this week</span>
+        <h3>Your own best clients</h3>
+        <p>Your quietest, most trusted clients often <b>are</b> &mdash; or personally know &mdash; exactly the people you want to reach. The move isn&rsquo;t a public &ldquo;refer a friend&rdquo; post. It&rsquo;s a <b>private, personal open door</b>: quietly inviting one trusted client to introduce one person they&rsquo;d vouch for, on their terms. Highest trust, costs nothing, and you can do it today.</p>
+      </div>
+    </div>
+
+    <div class="ring">
+      <div class="ring-num">2</div>
+      <div class="ring-body">
+        <span class="tag">The trusted circle around them</span>
+        <h3>The people who already serve high-end clients</h3>
+        <p>You reach the client by first becoming <b>the trusted, discreet hair referral</b> for the professionals already in their world &mdash; and offering to send your clients their way in return. Who to approach:</p>
+        <ul class="who">
+          <li><b>Personal stylists</b> &amp; image consultants</li>
+          <li><b>Makeup artists</b> (especially bridal)</li>
+          <li><b>Luxury &amp; med spas</b>, aesthetic clinics</li>
+          <li><b>High-end wedding &amp; event planners</b> &mdash; your bridal strength</li>
+          <li><b>Luxury real-estate agents</b> &mdash; they greet every new affluent household</li>
+          <li><b>Concierge desks</b> at private clubs &amp; country clubs</li>
+          <li><b>Personal assistants &amp; estate managers</b> who book for their people</li>
+          <li><b>Family offices</b> &amp; lifestyle-concierge firms</li>
+          <li><b>Charity gala &amp; philanthropy</b> committees</li>
+          <li><b>A local luxury boutique</b> or two</li>
+        </ul>
+        <div class="find">
+          <h4>How to actually find the assistants &amp; concierges</h4>
+          <ul>
+            <li><b>Your clients are the bridge.</b> Many high-end clients already have an assistant. The simplest way in is to ask a client you trust: &ldquo;Who looks after your calendar &mdash; would you trust me with them?&rdquo; That one question turns into a warm introduction, not a cold call.</li>
+            <li><b>You&rsquo;re in the right place.</b> Fairfield County &mdash; Greenwich and Westport especially &mdash; has one of the densest concentrations of <b>family offices, private clubs, and lifestyle-concierge firms</b> in the country. That&rsquo;s literally where these assistants and concierges work. A short, specific list can be researched and worked through one at a time (there&rsquo;s already a &ldquo;Network Opportunities&rdquo; tracker started for exactly this).</li>
+            <li><b>Luxury real-estate agents are the fastest warm door.</b> They meet every new high-net-worth family moving into the area, and get asked &ldquo;who do you recommend for&hellip;?&rdquo; all the time. Be their answer for hair.</li>
+            <li><b>Get the name, not just the desk.</b> A club&rsquo;s member-services page or a quick LinkedIn look gives you the actual person&rsquo;s name &mdash; so every note is personal and specific, never a mass mailing. (Personal is the whole point; a blast undoes it.)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="ring">
+      <div class="ring-num">3</div>
+      <div class="ring-body">
+        <span class="tag">Quiet visibility</span>
+        <h3>Be seen in the right rooms &mdash; without shouting</h3>
+        <p>A single, tasteful feature in a <b>local luxury publication</b>, or styling honorees at a <b>charity gala</b>, puts your work in front of exactly the right circle &mdash; and reads as prestige, not advertising. One well-placed moment does more here than a month of posts.</p>
+      </div>
+    </div>
+
+    <p class="note"><b>You already have the words.</b> Six outreach notes are drafted and ready in your folder &mdash; for luxury vendors, a trusted-client introduction, private clubs &amp; concierge desks, gala organizers, busy stylists needing a trusted overflow, and a press feature. Give Darice a real name and she&rsquo;ll tailor the right one. The discipline that makes this work: <b>a few researched, personal approaches at a time &mdash; never a mass send.</b></p>
+  </section>
+
+  <!-- 5. Decisions only she can make -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Your call</span>
+      <h2>A few choices only <em>you</em> can make</h2>
+      <p class="intro">None of these are urgent, but each one unlocks a piece of the plan. Rough answers are fine &mdash; Darice takes it from there.</p>
+    </div>
+    <div class="cards two">
+      <div class="choice"><h4>Referral thank-you</h4><p>A complimentary <b>add-on</b> (a deep-condition or refresh &mdash; keeps your pricing intact), or a simpler dollar credit? The add-on is recommended.</p></div>
+      <div class="choice"><h4>Inner Circle</h4><p>Your paid care-content tier &mdash; a <b>one-time add-on per visit</b>, or a small <b>monthly membership</b>?</p></div>
+      <div class="choice"><h4>&ldquo;WEAVE WHERE&rdquo;</h4><p>Is your 6-month membership <b>still running</b>? If so, we make it a proper VIP track with its own note.</p></div>
+      <div class="choice"><h4>Tagline &amp; old sites</h4><p>Confirm your <b>tagline</b>, and the OK to <b>retire/redirect</b> the old web listings.</p></div>
+    </div>
+  </section>
+
+  <!-- 6. First moves -->
+  <section>
+    <div class="sec-head">
+      <span class="eyebrow">Where to begin</span>
+      <h2>Your first three moves <em>this week</em></h2>
+      <p class="intro">Not the whole plan &mdash; just the start. Small, personal, and entirely in your control.</p>
+    </div>
+    <div class="checklist">
+      <div class="check-item"><p><b>Send one personal introduction ask.</b> Pick a single client you trust completely and quietly invite them to introduce one person they&rsquo;d vouch for. (Darice has the wording.)</p></div>
+      <div class="check-item"><p><b>Name five people in the high-end orbit</b> to approach &mdash; a planner, a stylist, a spa, a real-estate agent, a club or concierge desk. Darice tailors the note to each real name.</p></div>
+      <div class="check-item"><p><b>Tell Darice the groups you already keep in your head</b> &mdash; regulars, VIPs, bridal, lapsed &mdash; so we set them up in MailerLite and the right note starts reaching the right people.</p></div>
+    </div>
+    <p class="note"><b>And the two things still just for you:</b> your best mobile number (to fix your Google listing) and a few sentences about yourself for your website&rsquo;s About page. If you haven&rsquo;t already, the Setup Toolkit collects both.</p>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h2>A map, <em>not a to-do list</em>.</h2>
+    <p>You don&rsquo;t finish this in a week &mdash; and you&rsquo;re not meant to. We move at the pace that keeps everything feeling private and intentional, which is exactly what makes it work. Pick one thread, pull it gently, and the rest follows.</p>
+    <div class="links">
+      <a href="toolkit.html">Your Setup Toolkit</a>
+      <a href="messaging-kit.html">Your Messaging Kit</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
