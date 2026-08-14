@@ -9,21 +9,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0E0E0F;
-    --paper: #FBF9F5;
-    --paper-dim: #F0EAE0;
+    /* --- Brand constants: identical in both themes --- */
+    --bg: #0E0E0F;            /* background of the always-dark sections (hero, transformations) */
+    --brand-ink: #17181A;     /* always-dark surfaces: dark card, final CTA, image frames */
     --gold: #C69A54;
     --gold-soft: #E4C98D;
     --gold-dim: #8A6E3F;
     --teal: #63B7AB;
     --teal-deep: #274944;
-    --ink: #17181A;
     --ivory: #F4EFE6;
-    --muted: #A79E92;
-    --muted-dark: #6B6F72;
+    --muted: #A79E92;         /* muted text that always sits on a dark surface */
+    --max: 1160px;
+
+    /* --- Themeable: light (default). Genuinely white, matching the rest of the site --- */
+    --paper: #FFFFFF;         /* page background */
+    --paper-dim: #F7F5F1;     /* alternating section background */
+    --ink: #17181A;           /* main body/heading text */
+    --muted-dark: #6B6F72;    /* muted text on the page */
     --line: rgba(198, 154, 84, 0.24);
     --line-soft: rgba(198, 154, 84, 0.14);
-    --max: 1160px;
+  }
+
+  /* --- Themeable: dark. The three brand-dark sections stay dark regardless. --- */
+  [data-theme="dark"] {
+    --paper: #121213;
+    --paper-dim: #1B1B1D;
+    --ink: #F4EFE6;
+    --muted-dark: #A79E92;
+    --line: rgba(198, 154, 84, 0.30);
+    --line-soft: rgba(198, 154, 84, 0.18);
   }
 
   * { box-sizing: border-box; }
@@ -58,7 +72,7 @@
 
   header { position: sticky; top: 0; z-index: 50; background: rgba(14, 14, 15, 0.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line-soft); }
   .nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 40px; max-width: var(--max); margin: 0 auto; color: var(--ivory); }
-  .brand { display: flex; align-items: center; gap: 13px; }
+  .brand { display: flex; align-items: center; gap: 13px; text-decoration: none; color: var(--ivory); }
   .wordmark { font-family: 'Fraunces', serif; font-size: 1rem; letter-spacing: 0.05em; line-height: 1.2; }
   .wordmark small { display: block; font-family: 'Inter', sans-serif; font-size: 0.6rem; letter-spacing: 0.22em; color: var(--gold-soft); text-transform: uppercase; margin-top: 2px; }
   .nav-links { display: flex; gap: 34px; font-size: 0.78rem; letter-spacing: 0.05em; list-style: none; margin: 0; padding: 0; text-transform: uppercase; }
@@ -70,7 +84,19 @@
     color: var(--gold-soft); padding: 12px 24px; text-decoration: none; font-weight: 600;
     transition: background 0.3s ease, color 0.3s ease; white-space: nowrap;
   }
-  .nav-cta:hover { background: var(--gold); color: var(--ink); }
+  .nav-cta:hover { background: var(--gold); color: var(--brand-ink); }
+
+  .nav-right { display: flex; align-items: center; gap: 14px; }
+  .theme-toggle {
+    width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--gold-dim);
+    background: transparent; color: var(--gold-soft); display: flex; align-items: center; justify-content: center;
+    cursor: pointer; flex-shrink: 0; transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .theme-toggle:hover { border-color: var(--gold); background: rgba(198,154,84,0.1); }
+  .theme-toggle svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+  .theme-toggle .icon-moon { display: none; }
+  [data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+  [data-theme="dark"] .theme-toggle .icon-moon { display: block; }
 
   .hero { position: relative; background: var(--bg); color: var(--ivory); padding: 120px 40px 140px; overflow: hidden; }
   .hero::before {
@@ -92,7 +118,7 @@
   .check-dot svg { width: 9px; height: 9px; }
   .hero-actions { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
   .btn-primary {
-    background: var(--gold); color: var(--ink); text-decoration: none; padding: 17px 36px;
+    background: var(--gold); color: var(--brand-ink); text-decoration: none; padding: 17px 36px;
     font-size: 0.82rem; letter-spacing: 0.09em; text-transform: uppercase; font-weight: 600;
     transition: background 0.3s ease, letter-spacing 0.3s ease; display: inline-block; border: none; cursor: pointer;
   }
@@ -121,6 +147,7 @@
   .section-head .eyebrow { display: block; margin-bottom: 14px; }
   .section-head h2 { font-size: clamp(1.8rem, 3vw, 2.35rem); font-weight: 420; }
   .section-head h2 em { font-style: italic; color: var(--teal-deep); font-weight: 400; }
+  [data-theme="dark"] .section-head h2 em { color: var(--teal); }
 
   .pain { padding: 110px 40px 90px; }
   .pain-row { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
@@ -140,14 +167,14 @@
   .experience { padding: 110px 40px; }
   .exp-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
   @media (max-width: 780px) { .exp-grid { grid-template-columns: 1fr; } }
-  .exp-frame { position: relative; aspect-ratio: 4/5; background: linear-gradient(160deg, var(--ink), #221F1B); overflow: hidden; }
+  .exp-frame { position: relative; aspect-ratio: 4/5; background: linear-gradient(160deg, var(--brand-ink), #221F1B); overflow: hidden; }
   .exp-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .compare { padding: 40px 40px 130px; }
   .compare-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; }
   @media (max-width: 800px) { .compare-grid { grid-template-columns: 1fr; } }
   .plan { padding: 52px 46px; display: flex; flex-direction: column; position: relative; }
-  .plan.dark { background: var(--ink); color: var(--ivory); }
+  .plan.dark { background: var(--brand-ink); color: var(--ivory); }
   .plan.light { background: var(--paper-dim); color: var(--ink); }
   .plan-mark { width: 30px; height: 1px; background: var(--gold); margin-bottom: 26px; }
   .plan h3 { font-size: 1.2rem; letter-spacing: 0.06em; margin-bottom: 18px; text-transform: uppercase; font-weight: 500; }
@@ -167,7 +194,7 @@
   .trans-frame { position: relative; aspect-ratio: 3/4; background: linear-gradient(160deg, #201F1D, #121110); }
   .trans-frame span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-style: italic; color: #5C5850; font-size: 0.76rem; text-align: center; padding: 0 12px; }
 
-  .final-cta { background: var(--ink); color: var(--ivory); }
+  .final-cta { background: var(--brand-ink); color: var(--ivory); }
   .final-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; }
   @media (max-width: 820px) { .final-inner { grid-template-columns: 1fr; } }
   .final-text { padding: 110px 40px; }
@@ -184,6 +211,7 @@
   .foot-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
   .foot-brand .mono { border-color: var(--gold-dim); }
   .foot-word { font-family: 'Fraunces', serif; font-style: italic; color: var(--teal-deep); font-size: 1.05rem; }
+  [data-theme="dark"] .foot-word { color: var(--teal); }
   .foot-blurb { color: var(--muted-dark); font-size: 0.86rem; max-width: 340px; margin-bottom: 24px; }
   .foot-social { display: flex; gap: 14px; }
   .foot-social a { width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--gold-dim); transition: border-color 0.25s ease, color 0.25s ease; }
@@ -195,24 +223,33 @@
   .foot-nav a { text-decoration: none; color: var(--muted-dark); transition: color 0.25s ease; }
   .foot-nav a:hover { color: var(--gold-dim); }
 </style>
+<link rel="stylesheet" href="motion.css">
+<script src="theme.js"></script>
+<script src="motion.js"></script>
 </head>
 <body>
 
 <header>
   <nav class="nav">
-    <div class="brand">
+    <a class="brand" href="index.html">
       <span class="mono"><svg viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg></span>
       <div class="wordmark">HWS<small>by Danielle</small></div>
-    </div>
+    </a>
     <ul class="nav-links">
-      <li><a href="#experience">About</a></li>
-      <li><a href="#compare">Services</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#transformations">Gallery</a></li>
-      <li><a href="#">Reviews</a></li>
-      <li><a href="#">FAQ</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="experience.html">The Experience</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="faq.html">FAQ</a></li>
     </ul>
-    <a class="nav-cta" href="https://hwsbydanni.as.me" target="_blank" rel="noopener">Reserve Appointment</a>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></svg>
+      </button>
+      <a class="nav-cta" href="https://hwsbydanni.as.me" target="_blank" rel="noopener">Reserve Appointment</a>
+    </div>
   </nav>
 </header>
 
@@ -221,7 +258,7 @@
     <path class="thread-path" d="M -50 110 C 300 40, 550 190, 800 100 S 1250 30, 1450 120" />
   </svg>
   <div class="hero-grid">
-    <div>
+    <div class="hero-copy">
       <span class="eyebrow">Private Studio &middot; Fairfield County, CT</span>
       <h1>Natural-Looking Hair Extensions
         <span class="script">in a private, one-on-one luxury studio</span>
@@ -404,12 +441,12 @@
   </div>
   <div class="foot-bottom">
     <ul class="foot-nav">
-      <li><a href="#">About</a></li>
-      <li><a href="#transformations">Transformations</a></li>
-      <li><a href="#compare">Services</a></li>
-      <li><a href="#">Testimonials</a></li>
-      <li><a href="#">FAQ</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="gallery.html">Transformations</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="reviews.html">Testimonials</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
     </ul>
     <div>&copy; 2026 Hair Weaving Solutions By Danielle. All Rights Reserved.</div>
   </div>
