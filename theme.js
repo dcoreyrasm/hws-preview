@@ -6,14 +6,29 @@
   var initial = stored || (prefersDark ? 'dark' : 'light');
   root.setAttribute('data-theme', initial);
 
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function applyTheme(next) {
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('hws-theme', next);
+  }
+
+  function setTheme(next) {
+    // Prefer a true cross-fade via the View Transitions API where available;
+    // fall back to the CSS color transitions in motion.css / styles.css.
+    if (document.startViewTransition && !reduceMotion) {
+      document.startViewTransition(function () { applyTheme(next); });
+    } else {
+      applyTheme(next);
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     var toggle = document.getElementById('themeToggle');
     if (!toggle) return;
     toggle.addEventListener('click', function () {
       var current = root.getAttribute('data-theme');
-      var next = current === 'light' ? 'dark' : 'light';
-      root.setAttribute('data-theme', next);
-      localStorage.setItem('hws-theme', next);
+      setTheme(current === 'light' ? 'dark' : 'light');
     });
   });
 })();

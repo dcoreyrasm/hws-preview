@@ -211,6 +211,10 @@ header { position: sticky; top: 0; z-index: 50; background: rgba(14, 14, 15, 0.9
 .tier-card p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
 .tier-note { max-width: 700px; margin: 46px auto 0; text-align: center; font-size: 0.85rem; color: var(--text-muted); padding: 0 24px; }
 
+/* ---------- Gallery page wrapper (light section holding the frames) ---------- */
+.gallery-wrap { padding: 20px 24px 110px; background: var(--page-bg); }
+.gallery-note { max-width: 640px; margin: 44px auto 0; text-align: center; font-size: 0.85rem; color: var(--text-muted); padding: 0 24px; }
+
 /* ---------- Transformations gallery (always brand-dark) ---------- */
 .transformations { background: var(--brand-bg); padding: 100px 24px; }
 .transformations .section-head h2 { color: var(--brand-ivory); }

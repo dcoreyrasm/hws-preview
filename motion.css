@@ -1,0 +1,285 @@
+/* ==========================================================================
+   HWS by Danielle — Motion & Micro-interaction Layer
+   --------------------------------------------------------------------------
+   A purely ADDITIVE visual layer. It changes no content and no layout in its
+   resting state — it only adds scroll reveals, hover polish, and gallery
+   motion on top of the existing pages.
+
+   Everything here is scoped under `.has-motion` (added to <html> by motion.js).
+   If JavaScript is disabled or fails, none of this applies and every page
+   still renders exactly as it did before — all content fully visible.
+
+   Respects prefers-reduced-motion: reveals resolve instantly and hover
+   transforms are suppressed, so the site stays calm for anyone who asks for it.
+   ========================================================================== */
+
+.has-motion {
+  --ease-out: cubic-bezier(0.16, 0.8, 0.24, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   1. Scroll-triggered reveals
+   Elements start slightly lowered and faded; they settle as they enter view.
+   Kept subtle (18px rise, ~0.75s) to match the discreet brand voice.
+   -------------------------------------------------------------------------- */
+.has-motion .reveal,
+.has-motion .reveal-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.75s var(--ease-out),
+    transform 0.75s var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.has-motion .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Grouped children (grids) reveal in a gentle stagger once the group is in view */
+.has-motion .reveal-item {
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+.has-motion .reveal-group.is-visible .reveal-item {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero copy gets a one-time settle on load (not scroll-driven) */
+.has-motion .hero-copy > * {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: hws-hero-in 0.9s var(--ease-out) forwards;
+}
+.has-motion .hero-copy > *:nth-child(1) { animation-delay: 0.05s; }
+.has-motion .hero-copy > *:nth-child(2) { animation-delay: 0.14s; }
+.has-motion .hero-copy > *:nth-child(3) { animation-delay: 0.23s; }
+.has-motion .hero-copy > *:nth-child(4) { animation-delay: 0.32s; }
+.has-motion .hero-copy > *:nth-child(5) { animation-delay: 0.41s; }
+.has-motion .hero-copy > *:nth-child(6) { animation-delay: 0.50s; }
+
+@keyframes hws-hero-in {
+  to { opacity: 1; transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   2. Editorial image treatment (Experience, Gallery, hero, bio, final CTA)
+   A slow, restrained zoom on hover plus a thin gold frame that draws inward.
+   Frames already clip overflow in the base styles; this only animates within.
+   -------------------------------------------------------------------------- */
+.has-motion .exp-frame img,
+.has-motion .trans-frame img,
+.has-motion .bio-photo img,
+.has-motion .frame img,
+.has-motion .final-photo img,
+.has-motion .hero-photo img {
+  transition: transform 1.1s var(--ease-out);
+  will-change: transform;
+}
+.has-motion .exp-frame:hover img,
+.has-motion .trans-frame:hover img,
+.has-motion .bio-photo:hover img,
+.has-motion .frame:hover img {
+  transform: scale(1.045);
+}
+
+/* Thin gold inner border that eases in on gallery hover — a considered detail */
+.has-motion .exp-frame,
+.has-motion .trans-frame {
+  position: relative;
+}
+.has-motion .exp-frame::after,
+.has-motion .trans-frame::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid transparent;
+  pointer-events: none;
+  z-index: 3;
+  transition: border-color 0.6s var(--ease-out), inset 0.6s var(--ease-out);
+}
+.has-motion .exp-frame:hover::after,
+.has-motion .trans-frame:hover::after {
+  border-color: rgba(228, 201, 141, 0.55);
+  inset: 10px;
+}
+
+/* When galleries reveal on scroll, the image settles from a slight zoom —
+   gives the grids a more editorial "developing" feel than a plain fade. */
+.has-motion .exp-frame.reveal-item img,
+.has-motion .trans-frame.reveal-item img {
+  transform: scale(1.06);
+  transition: transform 1.2s var(--ease-out);
+}
+.has-motion .reveal-group.is-visible .exp-frame.reveal-item img,
+.has-motion .reveal-group.is-visible .trans-frame.reveal-item img {
+  transform: scale(1);
+}
+
+/* --------------------------------------------------------------------------
+   3. Card hover polish (sew-in comparison, service tiers, review cards)
+   A small lift and a soft shadow — enough to feel considered, never bouncy.
+   -------------------------------------------------------------------------- */
+.has-motion .plan,
+.has-motion .tier-card,
+.has-motion .review-card {
+  transition:
+    transform 0.45s var(--ease-out),
+    box-shadow 0.45s var(--ease-out),
+    border-color 0.45s var(--ease-out);
+  will-change: transform;
+}
+.has-motion .plan:hover,
+.has-motion .tier-card:hover,
+.has-motion .review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 48px -28px rgba(14, 14, 15, 0.5);
+}
+.has-motion .tier-card:hover,
+.has-motion .review-card:hover {
+  border-color: var(--gold);
+}
+
+/* --------------------------------------------------------------------------
+   4. Button micro-interactions
+   Keeps the existing letter-spacing bloom and adds a soft gold glow + lift.
+   -------------------------------------------------------------------------- */
+.has-motion .btn-primary {
+  transition:
+    background 0.3s var(--ease-soft),
+    letter-spacing 0.3s var(--ease-soft),
+    box-shadow 0.3s var(--ease-soft),
+    transform 0.3s var(--ease-soft);
+}
+.has-motion .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px -16px rgba(198, 154, 84, 0.65);
+}
+.has-motion .btn-primary:active {
+  transform: translateY(0);
+}
+
+.has-motion .nav-cta {
+  transition: background 0.3s var(--ease-soft), color 0.3s var(--ease-soft), letter-spacing 0.3s var(--ease-soft);
+}
+.has-motion .nav-cta:hover {
+  letter-spacing: 0.11em;
+}
+
+/* --------------------------------------------------------------------------
+   5. Nav link underline
+   A gold underline wipes in from the left on hover / current page.
+   -------------------------------------------------------------------------- */
+.has-motion .nav-links a {
+  position: relative;
+}
+.has-motion .nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 1px;
+  background: var(--gold-soft);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.32s var(--ease-out);
+}
+.has-motion .nav-links a:hover::after,
+.has-motion .nav-links a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+/* --------------------------------------------------------------------------
+   6. Theme toggle micro-interaction
+   The sun/moon eases and rotates slightly on hover — a small, warm detail.
+   -------------------------------------------------------------------------- */
+.has-motion .theme-toggle svg {
+  transition: transform 0.6s cubic-bezier(0.5, 1.4, 0.4, 1);
+}
+.has-motion .theme-toggle:hover .icon-sun {
+  transform: rotate(38deg);
+}
+.has-motion .theme-toggle:hover .icon-moon {
+  transform: rotate(-16deg);
+}
+
+/* Footer social + faq chevron already animate in base styles; add a touch */
+.has-motion .foot-social a {
+  transition: border-color 0.25s ease, color 0.25s ease, transform 0.35s var(--ease-out);
+}
+.has-motion .foot-social a:hover {
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   7. Light / dark cross-fade
+   theme.js prefers the View Transitions API for a true cross-fade. This tunes
+   its timing and provides a CSS fallback for browsers without it.
+   -------------------------------------------------------------------------- */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fallback for browsers without View Transitions: ease the big surfaces so a
+   toggle glides instead of snapping. (View-Transition browsers ignore this
+   during the transition because the snapshot handles it.) */
+.has-motion body,
+.has-motion .pain,
+.has-motion .why,
+.has-motion .experience,
+.has-motion .compare,
+.has-motion .tiers,
+.has-motion .reviews-wrap,
+.has-motion .faq-wrap,
+.has-motion .bio-wrap,
+.has-motion footer,
+.has-motion .tier-card,
+.has-motion .review-card,
+.has-motion .faq-item,
+.has-motion .plan.light,
+.has-motion .plan.light-card {
+  transition:
+    background-color 0.45s var(--ease-soft),
+    color 0.45s var(--ease-soft),
+    border-color 0.45s var(--ease-soft);
+}
+
+/* --------------------------------------------------------------------------
+   8. Reduced-motion: honor the user's preference completely
+   Content is shown instantly, hover transforms are removed. Colors may still
+   cross-fade gently since that is not "motion" in the vestibular sense.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .has-motion .reveal,
+  .has-motion .reveal-item,
+  .has-motion .hero-copy > * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .has-motion .plan:hover,
+  .has-motion .tier-card:hover,
+  .has-motion .review-card:hover,
+  .has-motion .btn-primary:hover,
+  .has-motion .foot-social a:hover {
+    transform: none;
+  }
+  .has-motion .exp-frame:hover img,
+  .has-motion .trans-frame:hover img,
+  .has-motion .bio-photo:hover img,
+  .has-motion .frame:hover img,
+  .has-motion .exp-frame.reveal-item img,
+  .has-motion .trans-frame.reveal-item img {
+    transform: none;
+  }
+  .has-motion .theme-toggle:hover .icon-sun,
+  .has-motion .theme-toggle:hover .icon-moon {
+    transform: none;
+  }
+}
