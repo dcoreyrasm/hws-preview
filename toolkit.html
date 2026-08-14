@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, follow" />
+<title>HWS Studio Toolkit — Setup</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  :root {
+    --brand-bg: #0E0E0F;
+    --brand-surface: #17181A;
+    --ivory: #F4EFE6;
+    --gold: #C69A54;
+    --gold-soft: #E4C98D;
+    --gold-dim: #8A6E3F;
+    --muted-dark: #A79E92;
+    --teal-dark: #63B7AB;
+
+    --bg-page: #FFFFFF;
+    --bg-alt: #F7F5F1;
+    --bg-card: #FFFFFF;
+    --field-bg: #FCFAF6;
+    --ink: #1B1C1E;
+    --muted: #5E6163;
+    --line: rgba(198, 154, 84, 0.26);
+    --line-soft: rgba(198, 154, 84, 0.14);
+    --gold-ink: #8A6E3F;
+    --teal: #3C8074;
+    --shadow: 0 1px 2px rgba(23,24,26,0.04), 0 12px 32px -18px rgba(23,24,26,0.18);
+
+    --max: 940px;
+    --font-display: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+    --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg-page: #121213; --bg-alt: #1A1A1C; --bg-card: #1B1B1D; --field-bg: #161618;
+      --ink: #F1ECE2; --muted: #A79E92;
+      --line: rgba(198,154,84,0.32); --line-soft: rgba(198,154,84,0.17);
+      --gold-ink: #E4C98D; --teal: #63B7AB;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 14px 34px -18px rgba(0,0,0,0.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg-page: #121213; --bg-alt: #1A1A1C; --bg-card: #1B1B1D; --field-bg: #161618;
+    --ink: #F1ECE2; --muted: #A79E92;
+    --line: rgba(198,154,84,0.32); --line-soft: rgba(198,154,84,0.17);
+    --gold-ink: #E4C98D; --teal: #63B7AB;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 14px 34px -18px rgba(0,0,0,0.6);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg-page); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; margin: 0; }
+  em { font-style: italic; color: var(--teal); }
+  .eyebrow { font-family: var(--font-body); font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; }
+
+  /* Header */
+  .topband { background: radial-gradient(120% 140% at 82% -10%, rgba(198,154,84,0.14), transparent 60%), linear-gradient(180deg, var(--brand-bg), var(--brand-surface)); color: var(--ivory); padding: 42px 28px 48px; border-bottom: 1px solid rgba(198,154,84,0.22); }
+  .band-inner { max-width: var(--max); margin: 0 auto; }
+  .lockup { display: flex; align-items: center; gap: 13px; margin-bottom: 34px; }
+  .mono { width: 38px; height: 38px; flex: none; border: 1px solid var(--gold-dim); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .mono svg { width: 17px; height: 17px; stroke: var(--gold); fill: none; stroke-width: 1.2; }
+  .wordmark { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.02em; line-height: 1; }
+  .wordmark small { display: block; font-family: var(--font-body); font-size: 0.58rem; letter-spacing: 0.24em; color: var(--gold-soft); text-transform: uppercase; margin-top: 5px; }
+  .topband .eyebrow { color: var(--gold-soft); }
+  .topband h1 { font-size: clamp(2.1rem, 5.6vw, 3.2rem); line-height: 1.05; margin: 13px 0 0; letter-spacing: -0.01em; }
+  .topband h1 em { color: var(--gold-soft); }
+  .lede { max-width: 48ch; margin: 20px 0 0; color: #D9D2C6; font-size: 1.04rem; }
+
+  main { max-width: var(--max); margin: 0 auto; padding: 0 28px 30px; }
+
+  /* How it works */
+  .how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 34px 0 8px; }
+  @media (max-width: 680px) { .how { grid-template-columns: 1fr; } }
+  .how-item { background: var(--bg-alt); border: 1px solid var(--line-soft); border-radius: 4px; padding: 18px 20px; }
+  .how-item .k { font-family: var(--font-display); font-size: 1.5rem; color: var(--gold); line-height: 1; }
+  .how-item p { margin: 8px 0 0; font-size: 0.9rem; color: var(--muted); }
+  .how-item p b { color: var(--ink); font-weight: 600; }
+  .savenote { margin: 16px 0 0; font-size: 0.84rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .savenote svg { width: 15px; height: 15px; stroke: var(--teal); fill: none; stroke-width: 1.5; flex: none; }
+
+  /* Progress */
+  .progress { position: sticky; top: 0; z-index: 5; background: var(--bg-page); padding: 18px 0 14px; margin-top: 30px; border-bottom: 1px solid var(--line-soft); }
+  .progress-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
+  .progress-row .eyebrow { color: var(--gold-ink); }
+  #progressLabel { font-size: 0.82rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .bar { height: 6px; background: var(--line-soft); border-radius: 100px; overflow: hidden; }
+  #pct { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--teal), var(--gold)); border-radius: 100px; transition: width 0.4s ease; }
+
+  /* Steps */
+  .steps { display: flex; flex-direction: column; gap: 16px; padding-top: 26px; }
+  .step { background: var(--bg-card); border: 1px solid var(--line); border-left: 3px solid var(--line); border-radius: 4px; padding: 22px 24px 20px; box-shadow: var(--shadow); transition: border-color 0.3s ease; }
+  .step.is-done { border-left-color: var(--teal); }
+  .step-head { display: flex; align-items: flex-start; gap: 14px; }
+  .step-num { flex: none; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold-ink); font-family: var(--font-display); font-size: 1.05rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+  .step.is-done .step-num { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .step.is-done .step-num::before { content: "\2713"; }
+  .step.is-done .step-num span { display: none; }
+  .step-head-main { flex: 1; min-width: 0; }
+  .step-title { font-size: 1.2rem; line-height: 1.2; }
+  .step-tag { display: block; font-size: 0.66rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--gold-ink); font-weight: 600; margin-bottom: 4px; }
+  .chip { flex: none; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 100px; white-space: nowrap; }
+  .chip-free { color: var(--teal); border: 1px solid var(--teal); }
+  .chip-cost { color: var(--gold-ink); border: 1px solid var(--gold); }
+  .step-body { padding-left: 48px; }
+  @media (max-width: 540px) { .step-body { padding-left: 0; margin-top: 14px; } }
+  .step-why { margin: 6px 0 16px; font-size: 0.94rem; color: var(--muted); }
+  .step-why .flag { color: var(--teal); font-weight: 600; }
+
+  .open-btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--gold-ink); border: 1px solid var(--gold); background: transparent; padding: 10px 18px; border-radius: 100px; text-decoration: none; transition: background 0.2s ease, color 0.2s ease; }
+  .open-btn:hover { background: var(--gold); color: var(--brand-bg); }
+  .open-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .open-none { font-size: 0.84rem; color: var(--muted); font-style: italic; font-family: var(--font-display); }
+
+  .fields { display: grid; gap: 14px; margin-top: 18px; grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 540px) { .fields { grid-template-columns: 1fr; } }
+  .field.full { grid-column: 1 / -1; }
+  .field label { display: block; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+  .field input, .field textarea { width: 100%; font-family: var(--font-body); font-size: 0.95rem; color: var(--ink); background: var(--field-bg); border: 1px solid var(--line); border-radius: 4px; padding: 11px 13px; transition: border-color 0.2s ease; }
+  .field input:focus, .field textarea:focus { outline: none; border-color: var(--gold); }
+  .field input::placeholder, .field textarea::placeholder { color: var(--muted); opacity: 0.7; }
+
+  .done-row { display: flex; align-items: center; gap: 10px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+  .done-row input { width: 18px; height: 18px; accent-color: var(--teal); cursor: pointer; }
+  .done-row label { font-size: 0.86rem; color: var(--ink); cursor: pointer; user-select: none; }
+
+  /* Handoff */
+  .handoff { margin-top: 34px; background: var(--brand-surface); color: var(--ivory); border: 1px solid rgba(198,154,84,0.24); border-radius: 6px; padding: 30px 30px 32px; }
+  .handoff .eyebrow { color: var(--gold-soft); }
+  .handoff h2 { color: var(--ivory); font-size: clamp(1.4rem, 3.4vw, 1.9rem); margin: 10px 0 6px; }
+  .handoff h2 em { color: var(--gold-soft); }
+  .handoff .sub { color: var(--muted-dark); font-size: 0.94rem; margin: 0 0 20px; max-width: 56ch; }
+  #preview { font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.5; color: #E8E2D6; background: var(--brand-bg); border: 1px solid rgba(198,154,84,0.18); border-radius: 4px; padding: 16px 18px; max-height: 260px; overflow: auto; white-space: pre-wrap; word-break: break-word; margin: 0 0 18px; }
+  .handoff-btns { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn { font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; border-radius: 100px; padding: 13px 26px; cursor: pointer; border: 1px solid transparent; transition: transform 0.12s ease, background 0.2s ease; }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--gold); color: var(--brand-bg); border-color: var(--gold); }
+  .btn-primary:hover { background: var(--gold-soft); }
+  .btn-ghost { background: transparent; color: var(--gold-soft); border-color: var(--gold-dim); }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--ivory); }
+  #msg { font-size: 0.86rem; color: var(--teal-dark); min-height: 1.2em; }
+
+  /* Costs */
+  .costs-band { margin-top: 34px; }
+  .costs-band .eyebrow { color: var(--gold-ink); }
+  .costs-band h2 { font-size: clamp(1.4rem, 3.4vw, 1.85rem); margin: 10px 0 20px; }
+  .costs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (max-width: 620px) { .costs { grid-template-columns: 1fr; } }
+  .cost-row { display: flex; gap: 14px; align-items: baseline; padding: 16px 20px; background: var(--bg-alt); border: 1px solid var(--line-soft); border-radius: 4px; }
+  .cost-amt { font-family: var(--font-display); font-size: 1.15rem; flex: none; min-width: 5em; }
+  .cost-row.is-free .cost-amt { color: var(--teal); }
+  .cost-row.is-cost .cost-amt { color: var(--gold-ink); }
+  .cost-row p { margin: 0; font-size: 0.88rem; color: var(--muted); }
+  .cost-row p b { color: var(--ink); font-weight: 600; }
+
+  /* Footer */
+  .foot { background: var(--bg-alt); border-top: 1px solid var(--line); margin-top: 40px; }
+  .foot-inner { max-width: var(--max); margin: 0 auto; padding: 40px 28px 48px; }
+  .foot h2 { font-size: clamp(1.3rem, 3.2vw, 1.7rem); }
+  .foot h2 em { color: var(--gold-ink); }
+  .foot p { max-width: 60ch; color: var(--muted); margin: 12px 0 0; }
+  .foot .fine { margin-top: 22px; font-size: 0.82rem; color: var(--muted); font-style: italic; font-family: var(--font-display); }
+
+  .rise { opacity: 0; transform: translateY(14px); animation: rise 0.7s cubic-bezier(0.2,0.7,0.2,1) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .rise { animation: none; opacity: 1; transform: none; } html { scroll-behavior: auto; } #pct { transition: none; } }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<header class="topband">
+  <div class="band-inner">
+    <div class="lockup rise">
+      <span class="mono"><svg viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg></span>
+      <div class="wordmark">HWS<small>by Danielle</small></div>
+    </div>
+    <p class="eyebrow rise" style="animation-delay:.05s">Let's set your studio up together</p>
+    <h1 class="rise" style="animation-delay:.1s">Your Studio <em>Setup</em></h1>
+    <p class="lede rise" style="animation-delay:.18s">Six small steps, one at a time. For each one, click through to the site, do the quick task, and type back what it gives you. When you're done, send it all to Darice with one tap &mdash; and the rest gets wired up for you behind the scenes.</p>
+  </div>
+</header>
+
+<main>
+  <div class="how rise" style="animation-delay:.24s">
+    <div class="how-item"><span class="k">1</span><p><b>Open the site.</b> Each step has a button that takes you straight there.</p></div>
+    <div class="how-item"><span class="k">2</span><p><b>Type back the details.</b> Fill in the boxes with what that site gives you.</p></div>
+    <div class="how-item"><span class="k">3</span><p><b>Send to Darice.</b> One tap at the bottom hands off everything you entered.</p></div>
+  </div>
+  <p class="savenote"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Your progress saves on this device automatically &mdash; you can stop and come back anytime.</p>
+
+  <div class="progress">
+    <div class="progress-row">
+      <span class="eyebrow">Your progress</span>
+      <span id="progressLabel">0 of 6 steps done</span>
+    </div>
+    <div class="bar"><span id="pct"></span></div>
+  </div>
+
+  <div class="steps">
+
+    <article class="step" data-step="1">
+      <div class="step-head">
+        <div class="step-num"><span>1</span></div>
+        <div class="step-head-main"><span class="step-tag">Getting found</span><h3 class="step-title">Claim your Google Business Profile</h3></div>
+        <span class="chip chip-free">Free</span>
+      </div>
+      <div class="step-body">
+        <p class="step-why"><span class="flag">Do this one first.</span> It's the map pin, your hours, and your 4.8&#9733; reviews &mdash; how most brand-new clients find you. Search your studio name; if it's there, click "Claim." If not, add it.</p>
+        <a class="open-btn" href="https://business.google.com/create" target="_blank" rel="noopener">Open Google Business <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="fields">
+          <div class="field full"><label>Your profile link (or just write "claimed")</label><input data-key="gbp" data-label="Google Business Profile" type="text" placeholder="Paste the link to your Google listing" /></div>
+        </div>
+        <div class="done-row"><input type="checkbox" data-done id="d1" /><label for="d1">Mark this step done</label></div>
+      </div>
+    </article>
+
+    <article class="step" data-step="2">
+      <div class="step-head">
+        <div class="step-num"><span>2</span></div>
+        <div class="step-head-main"><span class="step-tag">Foundation</span><h3 class="step-title">Get your domain name</h3></div>
+        <span class="chip chip-cost">~$15 / yr</span>
+      </div>
+      <div class="step-body">
+        <p class="step-why">Your own web address &mdash; like <b>hwsbydanni.com</b> &mdash; so the site feels fully yours. Search a name you like and buy the one that's available. This is the one new yearly cost.</p>
+        <a class="open-btn" href="https://www.namecheap.com/domains/domain-name-search/" target="_blank" rel="noopener">Search domain names <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="fields">
+          <div class="field"><label>The domain you bought</label><input data-key="domain" data-label="Domain" type="text" placeholder="hwsbydanni.com" /></div>
+          <div class="field"><label>Where you bought it</label><input data-key="registrar" data-label="Registrar" type="text" placeholder="Namecheap, GoDaddy, etc." /></div>
+          <div class="field full"><label>The email you used to sign up there</label><input data-key="domain_email" data-label="Registrar login email" type="email" placeholder="you@email.com" /></div>
+        </div>
+        <div class="done-row"><input type="checkbox" data-done id="d2" /><label for="d2">Mark this step done</label></div>
+      </div>
+    </article>
+
+    <article class="step" data-step="3">
+      <div class="step-head">
+        <div class="step-num"><span>3</span></div>
+        <div class="step-head-main"><span class="step-tag">Clients &amp; promos</span><h3 class="step-title">Choose your business email</h3></div>
+        <span class="chip chip-free">Free</span>
+      </div>
+      <div class="step-body">
+        <p class="step-why">Where booking notes and messages from your website should land. Your everyday email is perfectly fine to start &mdash; no new site to visit.</p>
+        <span class="open-none">No sign-up needed &mdash; just tell me the email.</span>
+        <div class="fields">
+          <div class="field full"><label>Best email for client messages</label><input data-key="contact_email" data-label="Business / contact email" type="email" placeholder="you@email.com" /></div>
+        </div>
+        <div class="done-row"><input type="checkbox" data-done id="d3" /><label for="d3">Mark this step done</label></div>
+      </div>
+    </article>
+
+    <article class="step" data-step="4">
+      <div class="step-head">
+        <div class="step-num"><span>4</span></div>
+        <div class="step-head-main"><span class="step-tag">Booking</span><h3 class="step-title">Confirm your Acuity booking</h3></div>
+        <span class="chip chip-free">In place</span>
+      </div>
+      <div class="step-body">
+        <p class="step-why">You already use <b>Acuity</b> &mdash; perfect, we'll keep it, no new tool needed. Just confirm your booking link so it's wired into every "Reserve" button on your site. Deposits and reminders live inside Acuity's own settings, and I can help you switch those on if you'd like.</p>
+        <a class="open-btn" href="https://secure.acuityscheduling.com/login.php" target="_blank" rel="noopener">Open Acuity <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="fields">
+          <div class="field full"><label>Your Acuity booking link</label><input data-key="booking_link" data-label="Acuity booking link" type="text" value="hwsbydanni.as.me" placeholder="hwsbydanni.as.me" /></div>
+          <div class="field full"><label>Deposits &mdash; on, off, or want help?</label><input data-key="deposits" data-label="Deposits in Acuity" type="text" placeholder="On already / not yet / help me turn them on" /></div>
+        </div>
+        <div class="done-row"><input type="checkbox" data-done id="d4" /><label for="d4">Mark this step done</label></div>
+      </div>
+    </article>
+
+    <article class="step" data-step="5">
+      <div class="step-head">
+        <div class="step-num"><span>5</span></div>
+        <div class="step-head-main"><span class="step-tag">Clients &amp; promos</span><h3 class="step-title">Your client list &amp; promos, in one place</h3></div>
+        <span class="chip chip-free">Free</span>
+      </div>
+      <div class="step-body">
+        <p class="step-why">This one tool is both your client list <em>and</em> the way you send promos and seasonal notes &mdash; no separate database to keep up. Create the free account, then tell me the name your emails should come from.</p>
+        <a class="open-btn" href="https://www.mailerlite.com/signup" target="_blank" rel="noopener">Open MailerLite <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="fields">
+          <div class="field"><label>Email on your MailerLite account</label><input data-key="mailerlite" data-label="MailerLite login email" type="email" placeholder="you@email.com" /></div>
+          <div class="field"><label>Name your emails come "from"</label><input data-key="from_name" data-label="Email from-name" type="text" placeholder="HWS by Danielle" /></div>
+        </div>
+        <div class="done-row"><input type="checkbox" data-done id="d5" /><label for="d5">Mark this step done</label></div>
+      </div>
+    </article>
+
+    <article class="step" data-step="6">
+      <div class="step-head">
+        <div class="step-num"><span>6</span></div>
+        <div class="step-head-main"><span class="step-tag">Getting found</span><h3 class="step-title">Turn on visitor insights</h3></div>
+        <span class="chip chip-free">Free</span>
+      </div>
+      <div class="step-body">
+        <p class="step-why">A simple read on how many people visit your site and where they come from. Create a property for your website, then copy the Measurement ID &mdash; it starts with <b>G-</b>.</p>
+        <a class="open-btn" href="https://analytics.google.com/analytics/web/" target="_blank" rel="noopener">Open Google Analytics <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="fields">
+          <div class="field full"><label>Measurement ID (starts with G-)</label><input data-key="ga4" data-label="GA4 Measurement ID" type="text" placeholder="G-XXXXXXXXXX" /></div>
+        </div>
+        <div class="done-row"><input type="checkbox" data-done id="d6" /><label for="d6">Mark this step done</label></div>
+      </div>
+    </article>
+
+  </div>
+
+  <section class="handoff" aria-labelledby="handoff-h">
+    <span class="eyebrow">The last step</span>
+    <h2 id="handoff-h">Send it all to <em>Darice</em></h2>
+    <p class="sub">Here's everything you've entered, gathered in one place. Tap <b>Copy</b> and paste it into a message to Darice &mdash; or save it as a file to send. She'll wire up the rest behind the scenes.</p>
+    <pre id="preview" aria-live="polite"></pre>
+    <div class="handoff-btns">
+      <button class="btn btn-primary" id="copyBtn" type="button">Copy for Darice</button>
+      <button class="btn btn-ghost" id="saveBtn" type="button" hidden>Save as file</button>
+      <span id="msg" role="status"></span>
+    </div>
+    <div class="fields" style="margin-top:22px;">
+      <div class="field full"><label style="color:var(--muted-dark)">Anything else for Darice? (optional)</label><textarea id="notes" rows="2" placeholder="Questions, preferences, or notes..."></textarea></div>
+    </div>
+  </section>
+
+  <section class="costs-band">
+    <span class="eyebrow">A quick reminder on cost</span>
+    <h2>What it <em>actually</em> costs</h2>
+    <div class="costs">
+      <div class="cost-row is-free"><span class="cost-amt">Free</span><p><b>Almost everything.</b> Website, your client list &amp; promos (MailerLite), visitor insights, and your Google profile &mdash; all free at your size.</p></div>
+      <div class="cost-row is-cost"><span class="cost-amt">~$15/yr</span><p><b>Your domain.</b> About fifteen dollars for the whole year &mdash; the one new cost.</p></div>
+      <div class="cost-row is-free"><span class="cost-amt">In place</span><p><b>Acuity scheduling.</b> You already have it &mdash; nothing new to add, and no duplicate tool.</p></div>
+      <div class="cost-row is-cost"><span class="cost-amt">~3%</span><p><b>Card processing</b> &mdash; a small cut only when a client pays a deposit through Acuity. No new monthly bill.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <h2>It's all <em>yours</em>.</h2>
+    <p>Every account is set up in your name and your email. You own your website, your client list, and your data &mdash; start to finish. Nothing here is locked to anyone else.</p>
+    <p class="fine">Not sure about a step? Leave it blank and note it above &mdash; we'll sort it out together.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var KEY = 'hws-setup-v2';
+    var $ = function (s, r) { return (r || document).querySelector(s); };
+    var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+    function collect() {
+      var steps = $$('.step'), done = 0, lines = [];
+      steps.forEach(function (s) {
+        var n = s.getAttribute('data-step');
+        var title = $('.step-title', s).textContent.trim();
+        var isDone = $('[data-done]', s).checked;
+        if (isDone) done++;
+        lines.push(n + '. ' + title + ' — ' + (isDone ? 'Done' : 'Not yet'));
+        $$('[data-key]', s).forEach(function (inp) {
+          var v = (inp.value || '').trim();
+          lines.push('   ' + inp.getAttribute('data-label') + ': ' + (v || '—'));
+        });
+      });
+      return { done: done, total: steps.length, lines: lines };
+    }
+
+    function buildText() {
+      var c = collect();
+      var notes = ($('#notes') && $('#notes').value || '').trim();
+      var when;
+      try { when = new Date().toLocaleString(); } catch (e) { when = ''; }
+      var t = "HWS · Danielle's Studio Setup\n";
+      if (when) t += 'Saved ' + when + ' · ';
+      t += 'Progress ' + c.done + ' of ' + c.total + '\n\n';
+      t += c.lines.join('\n');
+      if (notes) t += '\n\nNotes from Danielle:\n' + notes;
+      return t;
+    }
+
+    function save() {
+      try {
+        var d = {}; $$('[data-key]').forEach(function (i) { d[i.getAttribute('data-key')] = i.value; });
+        var done = {}; $$('.step').forEach(function (s) { done[s.getAttribute('data-step')] = $('[data-done]', s).checked; });
+        localStorage.setItem(KEY, JSON.stringify({ d: d, done: done, notes: ($('#notes') ? $('#notes').value : '') }));
+      } catch (e) {}
+    }
+
+    function restore() {
+      try {
+        var s = JSON.parse(localStorage.getItem(KEY) || 'null');
+        if (!s) return;
+        if (s.d) $$('[data-key]').forEach(function (i) { var k = i.getAttribute('data-key'); if (s.d[k] != null) i.value = s.d[k]; });
+        if (s.done) $$('.step').forEach(function (st) { var c = $('[data-done]', st); if (c && s.done[st.getAttribute('data-step')]) { c.checked = true; st.classList.add('is-done'); } });
+        if (s.notes != null && $('#notes')) $('#notes').value = s.notes;
+      } catch (e) {}
+    }
+
+    function update() {
+      var c = collect();
+      var pct = c.total ? (c.done / c.total) * 100 : 0;
+      $('#pct').style.width = pct + '%';
+      $('#progressLabel').textContent = c.done + ' of ' + c.total + ' steps done';
+      $('#preview').textContent = buildText();
+    }
+
+    var msgTimer;
+    function flash(text) {
+      var m = $('#msg'); m.textContent = text;
+      clearTimeout(msgTimer);
+      msgTimer = setTimeout(function () { m.textContent = ''; }, 4000);
+    }
+
+    document.addEventListener('input', function (e) {
+      if (e.target.matches('[data-key], #notes')) { save(); update(); }
+    });
+    document.addEventListener('change', function (e) {
+      if (e.target.matches('[data-done]')) {
+        e.target.closest('.step').classList.toggle('is-done', e.target.checked);
+        save(); update();
+      }
+    });
+
+    $('#copyBtn').addEventListener('click', function () {
+      var t = buildText();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(t).then(function () {
+          flash('Copied — now paste it into a message to Darice.');
+        }, function () { fallbackCopy(t); });
+      } else { fallbackCopy(t); }
+    });
+    function fallbackCopy(t) {
+      var ta = document.createElement('textarea');
+      ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      try { document.execCommand('copy'); flash('Copied — now paste it into a message to Darice.'); }
+      catch (e) { flash('Select the text above and press Ctrl/Cmd+C.'); }
+      ta.remove();
+    }
+
+    // Optional: offer a downloadable file if the capability is granted.
+    (async function () {
+      var dl = null;
+      try { if (typeof claude !== 'undefined' && claude.use) { dl = await claude.use('downloads'); } } catch (e) { dl = null; }
+      if (!dl) return;
+      var btn = $('#saveBtn'); btn.hidden = false;
+      btn.addEventListener('click', async function () {
+        try { await dl.save({ filename: 'hws-setup.txt', data: buildText() }); flash('Saved — send that file to Darice.'); }
+        catch (err) {
+          if (err && err.code === 'declined') { return; }
+          flash('Couldn’t save — use Copy instead.');
+        }
+      });
+    })();
+
+    restore();
+    update();
+  })();
+</script>
+</body>
+</html>
