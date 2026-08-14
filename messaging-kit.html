@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, follow" />
+<title>HWS Brand & Messaging Kit</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+  :root {
+    --brand-bg:#0E0E0F; --brand-surface:#17181A; --ivory:#F4EFE6;
+    --gold:#C69A54; --gold-soft:#E4C98D; --gold-dim:#8A6E3F; --muted-dark:#A79E92; --teal-dark:#63B7AB;
+    --bg-page:#FFFFFF; --bg-alt:#F7F5F1; --bg-card:#FFFFFF; --snip-bg:#FBF9F5;
+    --ink:#1B1C1E; --muted:#5E6163; --line:rgba(198,154,84,0.26); --line-soft:rgba(198,154,84,0.14);
+    --gold-ink:#8A6E3F; --teal:#3C8074; --warn:#9A5B2E; --warn-bg:rgba(198,120,60,0.10);
+    --shadow:0 1px 2px rgba(23,24,26,0.04), 0 12px 32px -18px rgba(23,24,26,0.18);
+    --max:960px;
+    --font-display:Georgia,'Iowan Old Style','Times New Roman',serif;
+    --font-body:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --font-mono:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg-page:#121213; --bg-alt:#1A1A1C; --bg-card:#1B1B1D; --snip-bg:#161618;
+    --ink:#F1ECE2; --muted:#A79E92; --line:rgba(198,154,84,0.32); --line-soft:rgba(198,154,84,0.17);
+    --gold-ink:#E4C98D; --teal:#63B7AB; --warn:#E0A268; --warn-bg:rgba(224,162,104,0.12);
+    --shadow:0 1px 2px rgba(0,0,0,0.3), 0 14px 34px -18px rgba(0,0,0,0.6);
+  }}
+  :root[data-theme="dark"]{
+    --bg-page:#121213; --bg-alt:#1A1A1C; --bg-card:#1B1B1D; --snip-bg:#161618;
+    --ink:#F1ECE2; --muted:#A79E92; --line:rgba(198,154,84,0.32); --line-soft:rgba(198,154,84,0.17);
+    --gold-ink:#E4C98D; --teal:#63B7AB; --warn:#E0A268; --warn-bg:rgba(224,162,104,0.12);
+    --shadow:0 1px 2px rgba(0,0,0,0.3), 0 14px 34px -18px rgba(0,0,0,0.6);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg-page);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:400;text-wrap:balance;margin:0;}
+  em{font-style:italic;color:var(--teal);}
+  .eyebrow{font-family:var(--font-body);font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;}
+
+  .topband{background:radial-gradient(120% 140% at 82% -10%,rgba(198,154,84,0.14),transparent 60%),linear-gradient(180deg,var(--brand-bg),var(--brand-surface));color:var(--ivory);padding:42px 28px 48px;border-bottom:1px solid rgba(198,154,84,0.22);}
+  .band-inner{max-width:var(--max);margin:0 auto;}
+  .lockup{display:flex;align-items:center;gap:13px;margin-bottom:34px;}
+  .mono{width:38px;height:38px;flex:none;border:1px solid var(--gold-dim);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .mono svg{width:17px;height:17px;stroke:var(--gold);fill:none;stroke-width:1.2;}
+  .wordmark{font-family:var(--font-display);font-size:1.15rem;letter-spacing:0.02em;line-height:1;}
+  .wordmark small{display:block;font-family:var(--font-body);font-size:0.58rem;letter-spacing:0.24em;color:var(--gold-soft);text-transform:uppercase;margin-top:5px;}
+  .topband .eyebrow{color:var(--gold-soft);}
+  .topband h1{font-size:clamp(2.1rem,5.6vw,3.2rem);line-height:1.05;margin:13px 0 0;letter-spacing:-0.01em;}
+  .topband h1 em{color:var(--gold-soft);}
+  .lede{max-width:52ch;margin:20px 0 0;color:#D9D2C6;font-size:1.04rem;}
+
+  main{max-width:var(--max);margin:0 auto;padding:0 28px 30px;}
+  section{padding:44px 0;border-bottom:1px solid var(--line-soft);}
+  section:last-of-type{border-bottom:0;}
+  .sec-head{margin-bottom:22px;}
+  .sec-head .eyebrow{color:var(--gold-ink);}
+  .sec-head h2{font-size:clamp(1.4rem,3.4vw,1.9rem);margin-top:10px;}
+  .sec-head p{color:var(--muted);margin:8px 0 0;font-size:0.94rem;max-width:64ch;}
+
+  /* facts */
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:4px;overflow:hidden;}
+  @media (max-width:620px){.facts{grid-template-columns:1fr;}}
+  .fact{background:var(--bg-card);padding:14px 18px;}
+  .fact dt{font-size:0.64rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-ink);font-weight:600;margin-bottom:3px;}
+  .fact dd{margin:0;font-size:0.92rem;color:var(--ink);}
+  .fact dd a{color:var(--teal);text-decoration:none;border-bottom:1px solid currentColor;}
+
+  /* snippet blocks */
+  .snip{background:var(--bg-card);border:1px solid var(--line);border-radius:5px;box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden;}
+  .snip-head{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line-soft);flex-wrap:wrap;}
+  .snip-label{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:var(--ink);}
+  .snip-meta{font-size:0.74rem;color:var(--muted);flex:1;min-width:120px;}
+  .copy{font-family:var(--font-body);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--gold-ink);background:transparent;border:1px solid var(--gold);border-radius:100px;padding:6px 14px;cursor:pointer;transition:background .18s,color .18s;white-space:nowrap;}
+  .copy:hover{background:var(--gold);color:var(--brand-bg);}
+  .copy.done{background:var(--teal);border-color:var(--teal);color:#fff;}
+  .snip-text{padding:14px;font-family:var(--font-display);font-size:1rem;line-height:1.5;color:var(--ink);white-space:pre-wrap;}
+  .snip-text.code{font-family:var(--font-mono);font-size:0.86rem;font-style:normal;}
+
+  /* services */
+  .svc{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media (max-width:640px){.svc{grid-template-columns:1fr;}}
+  .svc-card{background:var(--bg-card);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:4px;padding:16px 18px;box-shadow:var(--shadow);}
+  .svc-card.sub{border-left-color:var(--gold);}
+  .svc-card h3{font-size:1.05rem;margin-bottom:4px;}
+  .svc-card p{margin:0;font-size:0.88rem;color:var(--muted);}
+  .svc-group-label{font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:var(--gold-ink);margin:0 0 12px;}
+  .svc-group-label.second{margin-top:26px;}
+
+  /* apply cards */
+  .apply{display:flex;flex-direction:column;gap:14px;}
+  .surface{background:var(--bg-card);border:1px solid var(--line);border-radius:5px;padding:20px 22px;box-shadow:var(--shadow);}
+  .surface-head{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .surface-head h3{font-size:1.15rem;}
+  .chip{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;padding:5px 10px;border-radius:100px;white-space:nowrap;}
+  .chip-done{color:var(--teal);border:1px solid var(--teal);}
+  .chip-todo{color:var(--gold-ink);border:1px solid var(--gold);}
+  .chip-retire{color:var(--warn);border:1px solid var(--warn);}
+  .surface ul{margin:0;padding-left:20px;}
+  .surface li{font-size:0.9rem;color:var(--muted);margin:6px 0;}
+  .surface li b{color:var(--ink);font-weight:600;}
+  .fix{background:var(--warn-bg);border:1px solid var(--warn);border-radius:4px;padding:12px 14px;margin-top:12px;font-size:0.88rem;color:var(--ink);}
+  .fix b{color:var(--warn);}
+  .fix code{font-family:var(--font-mono);font-size:0.85em;background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;}
+
+  /* guardrails */
+  .rails{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media (max-width:640px){.rails{grid-template-columns:1fr;}}
+  .rail{background:var(--bg-alt);border:1px solid var(--line-soft);border-radius:4px;padding:16px 18px;font-size:0.9rem;color:var(--muted);}
+  .rail b{color:var(--ink);font-weight:600;}
+
+  .foot{background:var(--bg-alt);border-top:1px solid var(--line);margin-top:36px;}
+  .foot-inner{max-width:var(--max);margin:0 auto;padding:34px 28px 44px;}
+  .foot p{color:var(--muted);margin:0;font-size:0.9rem;}
+  .foot .fine{margin-top:12px;font-style:italic;font-family:var(--font-display);}
+
+  #toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--brand-surface);color:var(--ivory);border:1px solid var(--gold);border-radius:100px;padding:11px 22px;font-size:0.82rem;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:20;}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<header class="topband">
+  <div class="band-inner">
+    <div class="lockup">
+      <span class="mono"><svg viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg></span>
+      <div class="wordmark">HWS<small>by Danielle</small></div>
+    </div>
+    <p class="eyebrow">One message, every platform</p>
+    <h1>Brand &amp; Messaging <em>Kit</em></h1>
+    <p class="lede">The single source of truth for how the studio is described everywhere. Copy the right block for each place &mdash; website, Google, Square, Facebook, Instagram, TikTok &mdash; so every surface says the same thing. The new website is the primary; everything else matches it.</p>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="sec-head"><span class="eyebrow">The positioning</span><h2>Who we're <em>speaking to</em></h2>
+      <p>Natural-looking <b>Traditional &amp; Versatile sew-ins</b> for <b>professional women</b> who value privacy, healthy hair, and a one-on-one experience. Lace wigs/closures, silk press, and bridal stay available but never lead the message.</p>
+    </div>
+    <dl class="facts">
+      <div class="fact"><dt>Business name (exact)</dt><dd>Hair Weaving Solutions by Danielle</dd></div>
+      <div class="fact"><dt>Specialty</dt><dd>Natural-looking Traditional &amp; Versatile sew-ins</dd></div>
+      <div class="fact"><dt>Audience</dt><dd>Professional women &middot; natural look, healthy hair, privacy</dd></div>
+      <div class="fact"><dt>Location</dt><dd>Bridgeport, CT &middot; Fairfield County &middot; by appointment</dd></div>
+      <div class="fact"><dt>Experience &middot; Rating</dt><dd>27+ years &middot; 4.8&#9733; (72 Google reviews)</dd></div>
+      <div class="fact"><dt>Booking (one link everywhere)</dt><dd><a href="https://hwsbydanni.as.me" target="_blank" rel="noopener">hwsbydanni.as.me</a> (Acuity)</dd></div>
+      <div class="fact"><dt>Hours</dt><dd>Mon closed &middot; Tue&ndash;Fri 10&ndash;6 &middot; Sat&ndash;Sun 8&ndash;3</dd></div>
+      <div class="fact"><dt>Social</dt><dd>IG @hwsbydanni &middot; TikTok @hairwhlxsax &middot; Facebook</dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="eyebrow">Canonical copy</span><h2>The <em>words</em></h2>
+      <p>Tap <b>Copy</b> and paste. Pick the length that fits the field you're filling.</p>
+    </div>
+
+    <div class="snip"><div class="snip-head"><span class="snip-label">Headline</span><span class="snip-meta">hero / top of a page</span><button class="copy">Copy</button></div><div class="snip-text">Natural-Looking Sew-Ins for Professional Women</div></div>
+
+    <div class="snip"><div class="snip-head"><span class="snip-label">Tagline</span><span class="snip-meta">under the headline</span><button class="copy">Copy</button></div><div class="snip-text">Traditional &amp; Versatile sew-ins, where healthy hair comes first.</div></div>
+
+    <div class="snip"><div class="snip-head"><span class="snip-label">One-liner</span><span class="snip-meta">≤80 chars &middot; bios, directories</span><button class="copy">Copy</button></div><div class="snip-text code">Natural-looking Traditional &amp; Versatile sew-ins · Private studio · Bridgeport, CT</div></div>
+
+    <div class="snip"><div class="snip-head"><span class="snip-label">Short description</span><span class="snip-meta">≤160 chars &middot; meta, social about</span><button class="copy">Copy</button></div><div class="snip-text">A private, one-on-one studio specializing in natural-looking Traditional &amp; Versatile sew-ins for professional women. Healthy hair first. Bridgeport, CT.</div></div>
+
+    <div class="snip"><div class="snip-head"><span class="snip-label">Medium description</span><span class="snip-meta">~300 chars &middot; Facebook story, Square intro</span><button class="copy">Copy</button></div><div class="snip-text">For over 27 years, Danielle has helped professional women achieve natural-looking, healthy hair through expert Traditional and Versatile sew-in installs &mdash; in a private, one-on-one studio in Bridgeport, CT. Every appointment is unrushed and by appointment only, with your hair's health first.</div></div>
+
+    <div class="snip"><div class="snip-head"><span class="snip-label">Long description</span><span class="snip-meta">~690 chars &middot; Google Business Profile (max 750)</span><button class="copy">Copy</button></div><div class="snip-text">Hair Weaving Solutions by Danielle is a private, one-on-one studio in Bridgeport, CT specializing in natural-looking sew-in installs &mdash; Traditional and Versatile &mdash; for professional women who value privacy, healthy hair, and an unrushed experience. With 27+ years of expertise, Danielle focuses on protective, natural-looking results that keep your own hair healthy underneath. Every visit is private and by appointment only &mdash; never a crowded, rushed salon. Custom wigs &amp; closures, styling, and bridal are also available to studio clients by consultation. Serving Fairfield County. Book a consultation to find out whether a Traditional or Versatile sew-in is right for you.</div></div>
+
+    <div class="snip"><div class="snip-head"><span class="snip-label">Footer blurb</span><span class="snip-meta">site footer &middot; email sign-off</span><button class="copy">Copy</button></div><div class="snip-text">For over 27 years, helping professional women achieve natural-looking, healthy hair through expert Traditional and Versatile sew-in installs &mdash; in a private, one-on-one studio.</div></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="eyebrow">Bios</span><h2>Social <em>profiles</em></h2><p>Mind the character limits &mdash; each is written to fit.</p></div>
+
+    <div class="snip"><div class="snip-head"><span class="snip-label">Instagram</span><span class="snip-meta">≤150 chars</span><button class="copy">Copy</button></div><div class="snip-text">Natural-looking sew-ins for professional women. Traditional &amp; Versatile · Healthy hair first · Private studio · Bridgeport, CT. Book below 👇</div></div>
+
+    <div class="snip"><div class="snip-head"><span class="snip-label">TikTok</span><span class="snip-meta">≤80 chars</span><button class="copy">Copy</button></div><div class="snip-text">Natural-looking sew-in specialist · Bridgeport, CT · Book below 👇</div></div>
+
+    <div class="snip"><div class="snip-head"><span class="snip-label">Facebook intro</span><span class="snip-meta">≤255 chars &middot; use Medium/Long for "Our Story"</span><button class="copy">Copy</button></div><div class="snip-text">Private, one-on-one studio specializing in natural-looking Traditional &amp; Versatile sew-ins for professional women. Bridgeport, CT · By appointment.</div></div>
+    <p style="font-size:0.86rem;color:var(--muted);margin:6px 2px 0;">Link in every bio: Acuity (<b>hwsbydanni.as.me</b>) now &mdash; switch to the new site once the domain is live.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="eyebrow">The menu</span><h2><em>Services</em>, in order</h2><p>Sew-ins lead everywhere; the rest is "also available, by consultation."</p></div>
+    <p class="svc-group-label">Specialty &mdash; lead with these</p>
+    <div class="svc">
+      <div class="svc-card"><h3>Traditional Sew-In</h3><p>A natural-looking traditional sew-in with a small amount of hair left out for blending; an everyday, lower-maintenance look.</p></div>
+      <div class="svc-card"><h3>Versatile Sew-In</h3><p>A fuller, more flexible install for multiple styling options and a luxurious finish.</p></div>
+    </div>
+    <p class="svc-group-label second">Also available &mdash; by consultation</p>
+    <div class="svc">
+      <div class="svc-card sub"><h3>Custom Wig &amp; Closure</h3><p>Custom-fitted lace units and closures, installed for a natural, seamless finish.</p></div>
+      <div class="svc-card sub"><h3>Styling &amp; Refresh</h3><p>Standalone styling for clients maintaining an existing install or natural hair.</p></div>
+      <div class="svc-card sub"><h3>Bridal &amp; Event</h3><p>Private, in-home or in-studio styling for weddings and special events.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="eyebrow">Apply it</span><h2>Each place, <em>one by one</em></h2></div>
+    <div class="apply">
+      <div class="surface">
+        <div class="surface-head"><h3>New website</h3><span class="chip chip-done">Primary &middot; done</span></div>
+        <ul><li>The source of truth &mdash; already live and aligned. Everything else should match it.</li><li>Becomes the main site at Danielle's own domain; the others point here.</li></ul>
+      </div>
+
+      <div class="surface">
+        <div class="surface-head"><h3>Google Business Profile</h3><span class="chip chip-todo">To update</span></div>
+        <ul>
+          <li>Name: <b>exact real name only</b> (no keywords &mdash; avoids suspension). Primary category <b>Hair salon</b> (or "Hair extension technician" if offered); add "Hairdresser," "Beauty salon."</li>
+          <li>Description: paste <b>Long</b>. Services: the list above. Hours as above. Booking: Acuity.</li>
+          <li>Attributes: women-owned (if accurate), appointment required. <b>Website: hold</b> until the domain is live.</li>
+          <li>Boosters: add photos; ask happy clients to mention "sew-in" and "natural" in reviews.</li>
+        </ul>
+        <div class="fix"><b>Fix the WhatsApp / chat number.</b> The profile currently lists <code>+20 3 4492703</code> &mdash; that's an <b>Egypt country code (+20)</b>, not a US number, so WhatsApp says it "isn't on WhatsApp." Replace it with Danielle's correct US mobile in the Chat/WhatsApp field, or remove messaging there. <i>(Enter her real number directly &mdash; it isn't stored in this kit.)</i></div>
+      </div>
+
+      <div class="surface">
+        <div class="surface-head"><h3>Square site</h3><span class="chip chip-todo">Payments only</span></div>
+        <ul>
+          <li>Keep it <b>only if she still takes card payments through it.</b> Don't run it as a second website.</li>
+          <li>Hero &rarr; Headline + Tagline. Intro &rarr; <b>Medium</b>. Services &rarr; the list above. Footer &rarr; Footer blurb.</li>
+          <li>Point its main button to the <b>new site</b>; booking to <b>Acuity</b>. It's the checkout, not the destination.</li>
+        </ul>
+      </div>
+
+      <div class="surface">
+        <div class="surface-head"><h3>Weebly site</h3><span class="chip chip-retire">Retire</span></div>
+        <ul>
+          <li><b>Old and off-message &mdash; retire it,</b> so there's one clear home. But don't just delete it and leave a gap.</li>
+          <li><b>Now:</b> replace its homepage with a short "We've moved" note linking to booking (<b>Acuity</b>). Take down the stale pages.</li>
+          <li><b>When the new domain is live:</b> set a redirect from Weebly to the new site (keeps any Google value), then unpublish once traffic has moved.</li>
+          <li>Remove the Weebly link anywhere it still appears (social bios, Google).</li>
+        </ul>
+      </div>
+
+      <div class="surface">
+        <div class="surface-head"><h3>Facebook page</h3><span class="chip chip-todo">To update</span></div>
+        <ul>
+          <li>Intro &rarr; <b>Facebook intro</b>; Our Story &rarr; <b>Medium/Long</b>. Category: Hair salon.</li>
+          <li>"Book Now" button &rarr; Acuity. Pin a post announcing the sew-in focus.</li>
+        </ul>
+      </div>
+
+      <div class="surface">
+        <div class="surface-head"><h3>Instagram &amp; TikTok</h3><span class="chip chip-todo">To update</span></div>
+        <ul><li>Paste the bios above. Single link &rarr; Acuity now, new site once the domain is live.</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="eyebrow">Keep it clean</span><h2><em>Guardrails</em></h2></div>
+    <div class="rails">
+      <div class="rail"><b>One name.</b> Real business name only in Google/Facebook name fields &mdash; no keyword-stuffing.</div>
+      <div class="rail"><b>One booking link.</b> Acuity (hwsbydanni.as.me) everywhere. <b>One primary site:</b> the new one.</div>
+      <div class="rail"><b>Sew-ins lead.</b> Never let lace/wigs, silk press, or bridal headline the message.</div>
+      <div class="rail"><b>Don't invent a bio.</b> Danielle's personal About is still hers to write; nothing here fabricates it.</div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <p>Update this kit first when the message changes &mdash; then re-apply it to each surface, so everything stays in step.</p>
+    <p class="fine">One studio, one message, everywhere Danielle shows up.</p>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite">Copied</div>
+
+<script>
+(function(){
+  var toast=document.getElementById('toast'),t;
+  function show(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(t);t=setTimeout(function(){toast.classList.remove('show');},2200);}
+  function textOf(btn){
+    var el=btn.closest('.snip').querySelector('.snip-text');
+    // Normalize: collapse whitespace/newlines from the HTML source into clean copy text.
+    return el.textContent.replace(/\s+/g,' ').trim();
+  }
+  document.addEventListener('click',function(e){
+    var btn=e.target.closest('.copy'); if(!btn) return;
+    var txt=textOf(btn);
+    function ok(){btn.classList.add('done');var o=btn.textContent;btn.textContent='Copied';show('Copied to clipboard');setTimeout(function(){btn.classList.remove('done');btn.textContent=o;},1600);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(ok,function(){fb(txt,ok);});
+    } else { fb(txt,ok); }
+  });
+  function fb(txt,ok){var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok();}catch(e){show('Press Ctrl/Cmd+C to copy');}ta.remove();}
+})();
+</script>
+</body>
+</html>

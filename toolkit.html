@@ -182,7 +182,7 @@
     </div>
     <p class="eyebrow rise" style="animation-delay:.05s">Let's set your studio up together</p>
     <h1 class="rise" style="animation-delay:.1s">Your Studio <em>Setup</em></h1>
-    <p class="lede rise" style="animation-delay:.18s">Six small steps, one at a time. For each one, click through to the site, do the quick task, and type back what it gives you. When you're done, send it all to Darice with one tap &mdash; and the rest gets wired up for you behind the scenes.</p>
+    <p class="lede rise" style="animation-delay:.18s">Seven small steps, one at a time. For each one, click through to the site, do the quick task, and type back what it gives you. When you're done, send it all to Darice with one tap &mdash; and the rest gets wired up for you behind the scenes.</p>
   </div>
 </header>
 
@@ -197,7 +197,7 @@
   <div class="progress">
     <div class="progress-row">
       <span class="eyebrow">Your progress</span>
-      <span id="progressLabel">0 of 6 steps done</span>
+      <span id="progressLabel">0 of 7 steps done</span>
     </div>
     <div class="bar"><span id="pct"></span></div>
   </div>
@@ -223,16 +223,16 @@
     <article class="step" data-step="2">
       <div class="step-head">
         <div class="step-num"><span>2</span></div>
-        <div class="step-head-main"><span class="step-tag">Foundation</span><h3 class="step-title">Get your domain name</h3></div>
+        <div class="step-head-main"><span class="step-tag">Foundation</span><h3 class="step-title">Register your domain on GoDaddy</h3></div>
         <span class="chip chip-cost">~$15 / yr</span>
       </div>
       <div class="step-body">
-        <p class="step-why">Your own web address &mdash; like <b>hwsbydanni.com</b> &mdash; so the site feels fully yours. Search a name you like and buy the one that's available. This is the one new yearly cost.</p>
-        <a class="open-btn" href="https://www.namecheap.com/domains/domain-name-search/" target="_blank" rel="noopener">Search domain names <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <p class="step-why">Your own web address &mdash; <b>hwsbydanni.com</b> &mdash; so the site is fully yours. Register it on GoDaddy, then <b>add Darice as a technical contact</b> (GoDaddy calls it Delegate Access, under Account Settings) so she can help set it up &mdash; you stay the owner. This is the one new yearly cost.</p>
+        <a class="open-btn" href="https://www.godaddy.com/domainsearch/find?isc=123&amp;domainToCheck=Hwsbydanni.com" target="_blank" rel="noopener">Register on GoDaddy <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         <div class="fields">
-          <div class="field"><label>The domain you bought</label><input data-key="domain" data-label="Domain" type="text" placeholder="hwsbydanni.com" /></div>
-          <div class="field"><label>Where you bought it</label><input data-key="registrar" data-label="Registrar" type="text" placeholder="Namecheap, GoDaddy, etc." /></div>
-          <div class="field full"><label>The email you used to sign up there</label><input data-key="domain_email" data-label="Registrar login email" type="email" placeholder="you@email.com" /></div>
+          <div class="field"><label>The domain you registered</label><input data-key="domain" data-label="Domain" type="text" value="hwsbydanni.com" placeholder="hwsbydanni.com" /></div>
+          <div class="field"><label>Your GoDaddy login email</label><input data-key="domain_email" data-label="GoDaddy login email" type="email" placeholder="you@email.com" /></div>
+          <div class="field full"><label>Added Darice as a technical contact / delegate?</label><input data-key="domain_delegate" data-label="Darice added as GoDaddy delegate" type="text" placeholder="Yes (darice.corey@gmail.com) / need help" /></div>
         </div>
         <div class="done-row"><input type="checkbox" data-done id="d2" /><label for="d2">Mark this step done</label></div>
       </div>
@@ -241,6 +241,23 @@
     <article class="step" data-step="3">
       <div class="step-head">
         <div class="step-num"><span>3</span></div>
+        <div class="step-head-main"><span class="step-tag">Foundation</span><h3 class="step-title">Set up GitHub &amp; add Darice</h3></div>
+        <span class="chip chip-free">Free</span>
+      </div>
+      <div class="step-body">
+        <p class="step-why">Your website lives on GitHub. Create a free account, then <b>add Darice as a collaborator</b> so she can move your site over and connect your domain &mdash; you stay the owner. In GitHub: <b>Settings &rarr; Collaborators &rarr; Add people</b>, and invite <b>dcoreyrasm</b>.</p>
+        <a class="open-btn" href="https://github.com/signup" target="_blank" rel="noopener">Create a GitHub account <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="fields">
+          <div class="field"><label>Your GitHub username</label><input data-key="github_user" data-label="GitHub username" type="text" placeholder="e.g. hwsbydanni" /></div>
+          <div class="field"><label>Added Darice (dcoreyrasm) as a collaborator?</label><input data-key="github_collab" data-label="Darice added as GitHub collaborator" type="text" placeholder="Yes / need help" /></div>
+        </div>
+        <div class="done-row"><input type="checkbox" data-done id="d3" /><label for="d3">Mark this step done</label></div>
+      </div>
+    </article>
+
+    <article class="step" data-step="4">
+      <div class="step-head">
+        <div class="step-num"><span>4</span></div>
         <div class="step-head-main"><span class="step-tag">Clients &amp; promos</span><h3 class="step-title">Choose your business email</h3></div>
         <span class="chip chip-free">Free</span>
       </div>
@@ -250,13 +267,13 @@
         <div class="fields">
           <div class="field full"><label>Best email for client messages</label><input data-key="contact_email" data-label="Business / contact email" type="email" placeholder="you@email.com" /></div>
         </div>
-        <div class="done-row"><input type="checkbox" data-done id="d3" /><label for="d3">Mark this step done</label></div>
+        <div class="done-row"><input type="checkbox" data-done id="d4" /><label for="d4">Mark this step done</label></div>
       </div>
     </article>
 
-    <article class="step" data-step="4">
+    <article class="step" data-step="5">
       <div class="step-head">
-        <div class="step-num"><span>4</span></div>
+        <div class="step-num"><span>5</span></div>
         <div class="step-head-main"><span class="step-tag">Booking</span><h3 class="step-title">Confirm your Acuity booking</h3></div>
         <span class="chip chip-free">In place</span>
       </div>
@@ -267,13 +284,13 @@
           <div class="field full"><label>Your Acuity booking link</label><input data-key="booking_link" data-label="Acuity booking link" type="text" value="hwsbydanni.as.me" placeholder="hwsbydanni.as.me" /></div>
           <div class="field full"><label>Deposits &mdash; on, off, or want help?</label><input data-key="deposits" data-label="Deposits in Acuity" type="text" placeholder="On already / not yet / help me turn them on" /></div>
         </div>
-        <div class="done-row"><input type="checkbox" data-done id="d4" /><label for="d4">Mark this step done</label></div>
+        <div class="done-row"><input type="checkbox" data-done id="d5" /><label for="d5">Mark this step done</label></div>
       </div>
     </article>
 
-    <article class="step" data-step="5">
+    <article class="step" data-step="6">
       <div class="step-head">
-        <div class="step-num"><span>5</span></div>
+        <div class="step-num"><span>6</span></div>
         <div class="step-head-main"><span class="step-tag">Clients &amp; promos</span><h3 class="step-title">Your client list &amp; promos, in one place</h3></div>
         <span class="chip chip-free">Free</span>
       </div>
@@ -284,13 +301,13 @@
           <div class="field"><label>Email on your MailerLite account</label><input data-key="mailerlite" data-label="MailerLite login email" type="email" placeholder="you@email.com" /></div>
           <div class="field"><label>Name your emails come "from"</label><input data-key="from_name" data-label="Email from-name" type="text" placeholder="HWS by Danielle" /></div>
         </div>
-        <div class="done-row"><input type="checkbox" data-done id="d5" /><label for="d5">Mark this step done</label></div>
+        <div class="done-row"><input type="checkbox" data-done id="d6" /><label for="d6">Mark this step done</label></div>
       </div>
     </article>
 
-    <article class="step" data-step="6">
+    <article class="step" data-step="7">
       <div class="step-head">
-        <div class="step-num"><span>6</span></div>
+        <div class="step-num"><span>7</span></div>
         <div class="step-head-main"><span class="step-tag">Getting found</span><h3 class="step-title">Turn on visitor insights</h3></div>
         <span class="chip chip-free">Free</span>
       </div>
@@ -300,7 +317,7 @@
         <div class="fields">
           <div class="field full"><label>Measurement ID (starts with G-)</label><input data-key="ga4" data-label="GA4 Measurement ID" type="text" placeholder="G-XXXXXXXXXX" /></div>
         </div>
-        <div class="done-row"><input type="checkbox" data-done id="d6" /><label for="d6">Mark this step done</label></div>
+        <div class="done-row"><input type="checkbox" data-done id="d7" /><label for="d7">Mark this step done</label></div>
       </div>
     </article>
 
@@ -343,7 +360,7 @@
 
 <script>
   (function () {
-    var KEY = 'hws-setup-v2';
+    var KEY = 'hws-setup-v3';
     var $ = function (s, r) { return (r || document).querySelector(s); };
     var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
