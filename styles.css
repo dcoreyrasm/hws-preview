@@ -264,14 +264,47 @@ header { position: sticky; top: 0; z-index: 50; background: rgba(14, 14, 15, 0.9
 .trans-frame { position: relative; aspect-ratio: 3/4; background: linear-gradient(160deg, #201F1D, #121110); }
 .trans-frame span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-style: italic; color: #5C5850; font-size: 0.76rem; text-align: center; padding: 0 12px; }
 
+/* ==========================================================================
+   Content-ready placeholder structures
+   These three sections (About bio, Reviews, Gallery) are waiting on Danielle's
+   real words and photos. The structure below is built so real content is a
+   clean drop-in, not a redesign:
+     - Gallery/Experience: replace a frame's <span class="ph-slot">…</span> with
+       <img src="…" alt="…"> and the photo fills the frame automatically.
+     - Reviews: replace the quote text and name; the card design stays.
+     - About: replace the bracketed prompt lines with Danielle's paragraphs.
+   ========================================================================== */
+
+/* Photos fill their frame edge-to-edge on drop-in */
+.trans-frame img, .exp-frame img, .bio-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Empty photo slot — reads as an intentional "photo goes here", not a blank box */
+.ph-slot { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 18px; text-align: center; }
+.ph-slot::before { content: ""; position: absolute; inset: 16px; border: 1px dashed rgba(198, 154, 84, 0.32); transition: inset 0.6s var(--ease-out, ease), border-color 0.6s ease; }
+.trans-frame:hover .ph-slot::before { inset: 12px; border-color: rgba(228, 201, 141, 0.5); }
+.ph-slot .ph-icon { width: 30px; height: 30px; stroke: var(--gold-dim); fill: none; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; opacity: 0.85; position: relative; }
+.ph-slot em { font-family: 'Fraunces', serif; font-style: italic; color: #706B61; font-size: 0.8rem; letter-spacing: 0.02em; position: relative; }
+
+/* Thin gold corner marks for a framed portrait (editorial) */
+.corner-frame::before, .corner-frame::after { content: ""; position: absolute; width: 20px; height: 20px; z-index: 2; pointer-events: none; }
+.corner-frame::before { top: 14px; left: 14px; border-top: 1px solid var(--gold-soft); border-left: 1px solid var(--gold-soft); }
+.corner-frame::after { bottom: 14px; right: 14px; border-bottom: 1px solid var(--gold-soft); border-right: 1px solid var(--gold-soft); }
+
+/* Small "this is still a placeholder" chip */
+.draft-tag { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-accent); border: 1px solid var(--teal-accent); border-radius: 2px; padding: 4px 10px; margin-bottom: 22px; }
+
 /* ---------- Reviews ---------- */
 .reviews-wrap { padding: 20px 24px 110px; background: var(--page-bg); }
 .review-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 @media (max-width: 900px) { .review-grid { grid-template-columns: 1fr; max-width: 560px; } }
-.review-card { background: var(--section-alt); padding: 34px; border: 1px solid var(--line-soft); }
-.review-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 14px; letter-spacing: 2px; }
-.review-quote { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.02rem; line-height: 1.5; margin: 0 0 16px; color: var(--text-main); }
-.review-name { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-dim); }
+.review-card { background: var(--section-alt); padding: 32px 34px 34px; border: 1px solid var(--line-soft); position: relative; display: flex; flex-direction: column; }
+.review-quotemark { font-family: 'Fraunces', serif; font-size: 2.6rem; line-height: 0.7; color: var(--teal-accent); height: 0.55em; margin-bottom: 6px; }
+.review-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 12px; letter-spacing: 2px; }
+.review-quote { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.02rem; line-height: 1.55; margin: 0 0 18px; color: var(--text-main); flex-grow: 1; }
+.review-name { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-dim); padding-top: 14px; border-top: 1px solid var(--line-soft); }
+/* Placeholder state — clearly not a real quote yet */
+.review-quote.is-placeholder { color: var(--text-muted); }
+.review-name.is-placeholder { opacity: 0.7; }
 .reviews-note { max-width: 640px; margin: 44px auto 0; text-align: center; font-size: 0.85rem; color: var(--text-muted); padding: 0 24px; }
 
 /* ---------- FAQ accordion ---------- */
@@ -354,23 +387,24 @@ footer { background: var(--page-bg); padding: 76px 24px 40px; border-top: 1px so
 .referral-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; margin: 0; }
 .referral-close { max-width: 640px; margin: 44px auto 0; text-align: center; font-family: 'Fraunces', serif; font-style: italic; font-size: 1.1rem; color: var(--text-main); }
 
-/* ---------- Waitlist page ---------- */
-.waitlist-wrap { padding: 20px 24px 110px; background: var(--page-bg); }
-.waitlist-lead { max-width: 620px; margin: 0 auto 40px; text-align: center; color: var(--text-muted); font-size: 1rem; line-height: 1.75; }
-.waitlist-card { max-width: 620px; margin: 0 auto; background: var(--section-alt); border: 1px solid var(--line-soft); padding: 44px 42px; }
+/* ---------- Waitlist + Contact forms (shared) ---------- */
+.waitlist-wrap, .contact-wrap { padding: 20px 24px 110px; background: var(--page-bg); }
+.waitlist-lead, .contact-lead { max-width: 620px; margin: 0 auto 40px; text-align: center; color: var(--text-muted); font-size: 1rem; line-height: 1.75; }
+.waitlist-card, .contact-card { max-width: 620px; margin: 0 auto; background: var(--section-alt); border: 1px solid var(--line-soft); padding: 44px 42px; }
 .wl-field { margin-bottom: 18px; }
 .wl-field label { display: block; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 8px; }
-.wl-field input, .wl-field select {
+.wl-field input, .wl-field select, .wl-field textarea {
   width: 100%; padding: 13px 14px; background: var(--page-bg); border: 1px solid var(--line);
   color: var(--text-main); font-family: 'Inter', sans-serif; font-size: 0.92rem;
   border-radius: 0; transition: border-color 0.25s ease;
 }
-.wl-field input:focus, .wl-field select:focus { outline: none; border-color: var(--gold); }
-.waitlist-card .btn-primary { width: 100%; text-align: center; margin-top: 6px; border: none; cursor: pointer; }
+.wl-field textarea { min-height: 130px; resize: vertical; line-height: 1.6; }
+.wl-field input:focus, .wl-field select:focus, .wl-field textarea:focus { outline: none; border-color: var(--gold); }
+.waitlist-card .btn-primary, .contact-card .btn-primary { width: 100%; text-align: center; margin-top: 6px; border: none; cursor: pointer; }
 .wl-confirm { display: none; text-align: center; padding: 8px 0; }
 .wl-confirm.show { display: block; }
 .wl-confirm .mono { margin: 0 auto 20px; border-color: var(--gold); }
 .wl-confirm p { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.15rem; color: var(--text-main); line-height: 1.5; margin: 0; }
 .wl-privacy { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 16px 0 0; font-size: 0.76rem; color: var(--text-muted); text-align: center; line-height: 1.4; }
 .wl-privacy svg { width: 14px; height: 14px; stroke: var(--teal-accent); fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
-.waitlist-note { max-width: 620px; margin: 30px auto 0; text-align: center; font-size: 0.82rem; color: var(--text-muted); padding: 0 8px; }
+.waitlist-note, .contact-note { max-width: 620px; margin: 30px auto 0; text-align: center; font-size: 0.82rem; color: var(--text-muted); padding: 0 8px; }
