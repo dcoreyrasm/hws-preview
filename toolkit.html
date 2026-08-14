@@ -160,9 +160,14 @@
   .payoff h2 em { color: var(--gold-soft); }
   .payoff .sub { color: var(--muted-dark); font-size: 0.94rem; margin: 0 0 20px; max-width: 62ch; }
   .asks { display: flex; flex-wrap: wrap; gap: 12px; }
-  .ask-chip { background: var(--brand-bg); border: 1px solid rgba(198,154,84,0.28); border-radius: 100px; padding: 11px 20px; font-family: var(--font-display); font-style: italic; font-size: 0.98rem; color: var(--ivory); }
-  .ask-chip::before { content: "\201C"; color: var(--teal-dark); font-style: normal; margin-right: 3px; }
-  .ask-chip::after { content: "\201D"; color: var(--teal-dark); font-style: normal; margin-left: 2px; }
+  .ask-chip { background: var(--brand-bg); border: 1px solid rgba(198,154,84,0.28); border-radius: 100px; padding: 9px 12px 9px 18px; display: inline-flex; align-items: center; gap: 10px; }
+  .ask-q { font-family: var(--font-display); font-style: italic; font-size: 0.98rem; color: var(--ivory); }
+  .ask-q::before { content: "\201C"; color: var(--teal-dark); font-style: normal; margin-right: 2px; }
+  .ask-q::after { content: "\201D"; color: var(--teal-dark); font-style: normal; margin-left: 1px; }
+  .ask-where { font-family: var(--font-body); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; padding: 3px 9px; border-radius: 100px; white-space: nowrap; }
+  .ask-where.cowork { color: var(--teal-dark); border: 1px solid var(--teal-dark); }
+  .ask-where.chat { color: var(--gold-soft); border: 1px solid var(--gold-dim); }
+  .ask-where.darice { color: var(--muted-dark); border: 1px solid var(--muted-dark); }
 
   /* The four ways to use Claude */
   .claudes-band { margin-top: 40px; }
@@ -180,6 +185,22 @@
   .run-row { display: flex; gap: 14px; align-items: baseline; background: var(--bg-alt); border: 1px solid var(--line-soft); border-radius: 4px; padding: 12px 16px; }
   .run-row .run-what { font-size: 0.9rem; color: var(--muted); }
   .run-where { flex: none; min-width: 8em; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--gold-ink); }
+  .mini-h { font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--gold-ink); margin: 24px 0 8px; }
+  .apps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  @media (max-width: 640px) { .apps { grid-template-columns: 1fr; } }
+  .app-card { background: var(--bg-alt); border: 1px solid var(--line-soft); border-radius: 4px; padding: 14px 16px; }
+  .app-card h4 { margin: 0 0 4px; font-family: var(--font-display); font-weight: 400; font-size: 1rem; }
+  .app-card p { margin: 0; font-size: 0.86rem; color: var(--muted); }
+  .app-card b { color: var(--ink); font-weight: 600; }
+  .skill-list { display: flex; flex-direction: column; gap: 10px; }
+  .skill-row { background: var(--bg-card); border: 1px solid var(--line); border-left: 3px solid var(--teal); border-radius: 4px; padding: 14px 18px; box-shadow: var(--shadow); }
+  .skill-row h4 { margin: 0 0 5px; font-size: 1.02rem; }
+  .skill-row .cmds { margin: 0; font-size: 0.9rem; color: var(--muted); font-family: var(--font-display); font-style: italic; }
+  .callout { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 24px; background: var(--brand-surface); color: var(--ivory); border: 1px solid rgba(198,154,84,0.24); border-radius: 6px; padding: 18px 22px; }
+  .callout p { margin: 0; font-size: 0.94rem; color: var(--muted-dark); flex: 1; min-width: 220px; }
+  .callout p b { color: var(--ivory); font-weight: 400; font-family: var(--font-display); font-style: italic; }
+  .dbx-btn { font-family: var(--font-body); font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--brand-bg); background: var(--gold); border: 1px solid var(--gold); border-radius: 100px; padding: 11px 20px; text-decoration: none; white-space: nowrap; }
+  .dbx-btn:hover { background: var(--gold-soft); }
   .cost-row { display: flex; gap: 14px; align-items: baseline; padding: 16px 20px; background: var(--bg-alt); border: 1px solid var(--line-soft); border-radius: 4px; }
   .cost-amt { font-family: var(--font-display); font-size: 1.15rem; flex: none; min-width: 5em; }
   .cost-row.is-free .cost-amt { color: var(--teal); }
@@ -396,15 +417,16 @@
   <section class="payoff">
     <span class="eyebrow">Once you're set up</span>
     <h2>You never touch a dashboard &mdash; you <em>just ask</em></h2>
-    <p class="sub">When everything above is connected, this is the kind of thing you'll be able to say in plain words &mdash; and it gets done for you across your tools.</p>
+    <p class="sub">When everything above is connected, this is the kind of thing you'll be able to say in plain words. The tag shows <em>where</em> to say it &mdash; <b style="color:var(--gold-soft)">Chat</b> for quick drafting, <b style="color:var(--teal-dark)">Cowork</b> when Claude needs your tools (client list, calendar, email) to actually do it, and a few things you'll simply hand to <b>Darice</b>.</p>
     <div class="asks">
-      <span class="ask-chip">Add this new client and text me her next opening</span>
-      <span class="ask-chip">Send a summer refresh promo to everyone who hasn't booked since March</span>
-      <span class="ask-chip">Change my holiday hours on the website</span>
-      <span class="ask-chip">Draft a gracious reply to this review</span>
-      <span class="ask-chip">Who's on my calendar next week?</span>
-      <span class="ask-chip">Write my next newsletter and get it ready to send</span>
+      <span class="ask-chip"><span class="ask-q">Add this new client and text me her next opening</span><span class="ask-where cowork">Cowork</span></span>
+      <span class="ask-chip"><span class="ask-q">Send a summer refresh promo to everyone who hasn't booked since March</span><span class="ask-where cowork">Cowork</span></span>
+      <span class="ask-chip"><span class="ask-q">Draft a gracious reply to this review</span><span class="ask-where chat">Chat</span></span>
+      <span class="ask-chip"><span class="ask-q">Who's on my calendar next week?</span><span class="ask-where cowork">Cowork</span></span>
+      <span class="ask-chip"><span class="ask-q">Write my next newsletter and get it ready to send</span><span class="ask-where cowork">Cowork</span></span>
+      <span class="ask-chip"><span class="ask-q">Change my holiday hours on the website</span><span class="ask-where darice">Ask Darice</span></span>
     </div>
+    <p class="sub" style="margin-top:16px;"><b>When:</b> use <b style="color:var(--gold-soft)">Chat</b> anytime you just need words. Reach for <b style="color:var(--teal-dark)">Cowork</b> when you want it actually done &mdash; sent, scheduled, or saved to a tool. Cowork always shows you a test first and only sends when you say go.</p>
   </section>
 
   <section class="claudes-band">
@@ -424,6 +446,31 @@
       <div class="run-row"><span class="run-where">Darice &middot; Code</span><span class="run-what">Change the website &mdash; a new service, new hours, a new photo.</span></div>
     </div>
     <p class="sub" style="margin-top:14px;"><b>How to start:</b> open the Claude app, tap <b>New chat</b>, and type it in plain words &mdash; exactly like the examples above. Your <b>newsletter skill</b> (coming once you're set up) makes that one a single ask.</p>
+  </section>
+
+  <section class="claudes-band">
+    <span class="eyebrow">Get set up</span>
+    <h2>Getting Claude <em>working for you</em></h2>
+
+    <p class="mini-h">1 &middot; Get the apps</p>
+    <div class="apps">
+      <div class="app-card"><h4>On your phone</h4><p>Download <b>Claude</b> from the App Store (iPhone) or Google Play (Android).</p></div>
+      <div class="app-card"><h4>On your computer</h4><p>Get the Mac/Windows app at <b>claude.ai/download</b>.</p></div>
+      <div class="app-card"><h4>In a browser</h4><p>Or just go to <b>claude.ai</b>. Use the same login everywhere.</p></div>
+    </div>
+
+    <p class="mini-h">2 &middot; Your skills &amp; what to say</p>
+    <div class="skill-list">
+      <div class="skill-row"><h4>Newsletter &amp; promos</h4><p class="cmds">"Write my spring newsletter." &middot; "Send a promo to clients who haven't booked since March."</p></div>
+      <div class="skill-row"><h4>Review replies</h4><p class="cmds">"Reply to this review: [paste it]." &middot; "Help me respond graciously to a 3-star."</p></div>
+      <div class="skill-row"><h4>Re-booking</h4><p class="cmds">"Reach out to clients who haven't been in since spring."</p></div>
+    </div>
+    <p class="sub" style="margin-top:12px;">Darice sets these up on your account (<b>Settings &rarr; Skills</b>, with MailerLite connected). To change how one works later, just tell Darice &mdash; or edit its plain-text instructions and re-upload. Full steps are in <b>Your Claude Guide</b> (in your Dropbox folder).</p>
+
+    <div class="callout">
+      <p><b>Everything's saved in your Dropbox</b> &mdash; your setup guide, brand kit, and skills, all in one folder.</p>
+      <a class="dbx-btn" href="https://www.dropbox.com/scl/fo/1c49fn8wx15fo5ujb3rn3/AO8bfXqFz-xDkQ65rHvACiY?rlkey=cvaao7wtb6v9jz825ztgbfm33&amp;dl=0" target="_blank" rel="noopener">Open your Dropbox folder</a>
+    </div>
   </section>
 </main>
 
