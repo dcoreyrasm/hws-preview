@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, follow" />
 <title>Contact — HWS by Danielle</title>
-<meta name="description" content="Get in touch with HWS by Danielle, a private one-on-one hair studio in Fairfield County, CT. Send a note and Danielle will reply personally." />
+<meta name="description" content="Request a consultation with Danielle for a natural-looking Traditional or Versatile sew-in. Share a few details about your hair and she'll reply personally." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -16,14 +16,14 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HWS by Danielle">
 <meta property="og:title" content="Contact — HWS by Danielle">
-<meta property="og:description" content="Get in touch with HWS by Danielle, a private one-on-one hair studio in Fairfield County, CT.">
+<meta property="og:description" content="Request a consultation with Danielle for a natural-looking Traditional or Versatile sew-in, in a private one-on-one studio in Fairfield County, CT.">
 <meta property="og:url" content="https://www.daricecorey.com/hws-preview/contact.html">
 <meta property="og:image" content="https://www.daricecorey.com/hws-preview/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Contact — HWS by Danielle">
-<meta name="twitter:description" content="Get in touch with HWS by Danielle, a private one-on-one hair studio in Fairfield County, CT.">
+<meta name="twitter:description" content="Request a consultation with Danielle for a natural-looking Traditional or Versatile sew-in, in a private one-on-one studio in Fairfield County, CT.">
 <meta name="twitter:image" content="https://www.daricecorey.com/hws-preview/og-image.jpg">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="motion.css">
@@ -60,21 +60,25 @@
   </nav>
 </header>
 <section class="page-banner">
-  <span class="eyebrow">Contact</span>
-  <h1>Get in <em>Touch</em></h1>
-  <p>Have a question, or something a booking form can't capture? Send a note and Danielle will get back to you personally.</p>
+  <span class="eyebrow">Request a Consultation</span>
+  <h1>Let's See If We're a <em>Fit</em></h1>
+  <p>Tell Danielle a little about your hair and what you're looking for. She'll personally reply to see whether a Traditional or Versatile sew-in is right for you.</p>
 </section>
 
 <section class="contact-wrap">
-  <p class="contact-lead">Ready to book? You can reserve directly. For anything else &mdash; questions, home visits, or just saying hello &mdash; leave a note below.</p>
+  <p class="contact-lead">Ready to book now? You can <a class="btn-text on-light" href="https://hwsbydanni.as.me" target="_blank" rel="noopener">reserve directly &rarr;</a> For everything else &mdash; consultations, questions, or home visits &mdash; share a few details below and Danielle will take it from there.</p>
   <div class="contact-card">
     <!--
       FORM BACKEND NOT YET CONNECTED.
       This form is a preview: on submit it shows the confirmation message but does
-      NOT send the message anywhere. To deliver real messages to Danielle, either:
+      NOT send anywhere. It is a fit-qualifier — besides name/email/phone it captures
+      "service" (Traditional / Versatile / Not sure / Something else), "goal", and
+      "timeline". When wiring the backend, pass ALL of those fields through so Danielle
+      can screen leads. Recommended path (matches the toolkit): send submissions to
+      MailerLite as a new subscriber with those answers stored as fields/tags, so ad
+      leads land straight in her CRM. To deliver:
         (a) mailto fallback: set the <form> to build an email to her address, or
-        (b) a form service (e.g. Formspree): set
-            action="https://formspree.io/f/{YOUR_FORM_ID}" method="POST"
+        (b) a form service / MailerLite form action: set action + method="POST"
             and remove the preventDefault() in the script at the bottom.
       Do not wire a specific account/address without Danielle/Darice's go-ahead.
     -->
@@ -92,10 +96,40 @@
         <input type="tel" id="c-phone" name="phone" autocomplete="tel">
       </div>
       <div class="wl-field">
-        <label for="c-message">Message</label>
-        <textarea id="c-message" name="message" required></textarea>
+        <label for="c-service">What are you interested in?</label>
+        <select id="c-service" name="service" required>
+          <option value="" disabled selected>Choose one&hellip;</option>
+          <option value="Traditional Sew-In">Traditional Sew-In</option>
+          <option value="Versatile Sew-In">Versatile Sew-In</option>
+          <option value="Not sure yet — help me choose">Not sure yet &mdash; help me choose</option>
+          <option value="Something else">Something else</option>
+        </select>
       </div>
-      <button type="submit" class="btn-primary">Send Message</button>
+      <div class="wl-field">
+        <label for="c-goal">What matters most to you? <span style="text-transform:none;letter-spacing:0;color:var(--text-muted)">(optional)</span></label>
+        <select id="c-goal" name="goal">
+          <option value="" disabled selected>Choose one&hellip;</option>
+          <option value="A natural, everyday look">A natural, everyday look</option>
+          <option value="Fuller, more versatile styling">Fuller, more versatile styling</option>
+          <option value="Protecting & growing my natural hair">Protecting &amp; growing my natural hair</option>
+          <option value="A private, professional experience">A private, professional experience</option>
+          <option value="Getting ready for an event">Getting ready for an event</option>
+        </select>
+      </div>
+      <div class="wl-field">
+        <label for="c-timeline">When are you hoping to book? <span style="text-transform:none;letter-spacing:0;color:var(--text-muted)">(optional)</span></label>
+        <select id="c-timeline" name="timeline">
+          <option value="" disabled selected>Choose one&hellip;</option>
+          <option value="As soon as possible">As soon as possible</option>
+          <option value="Within the next month">Within the next month</option>
+          <option value="Just exploring for now">Just exploring for now</option>
+        </select>
+      </div>
+      <div class="wl-field">
+        <label for="c-message">Anything else about your hair? <span style="text-transform:none;letter-spacing:0;color:var(--text-muted)">(optional)</span></label>
+        <textarea id="c-message" name="message"></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Send to Danielle</button>
       <p class="wl-privacy">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
         Your details are private and go only to Danielle &mdash; never shared or posted.
@@ -126,7 +160,7 @@
         <span class="mono"><svg viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg></span>
         <span class="foot-word">HWS by Danielle</span>
       </div>
-      <p class="foot-blurb">Helping women achieve fuller, healthier, and more beautiful hair through expert weaving, extensions, wigs, silk presses, and customized hair solutions for over 27 years.</p>
+      <p class="foot-blurb">For over 27 years, helping professional women achieve natural-looking, healthy hair through expert Traditional and Versatile sew-in installs &mdash; in a private, one-on-one studio.</p>
       <div class="foot-social">
         <a href="https://www.instagram.com/hwsbydanni" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.6" y="3.6" width="16.8" height="16.8" rx="4.6"/><circle cx="12" cy="12" r="3.9"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></a>
         <a href="https://www.tiktok.com/@hairwhlxsax" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.1 1.6 3.5 3.6 3.7v2.6c-1.2 0-2.4-.4-3.4-1v5.8a5.3 5.3 0 1 1-5.3-5.3c.3 0 .6 0 .8.1v2.7a2.6 2.6 0 1 0 1.8 2.5V3h2.5z"/></svg></a>
@@ -166,8 +200,8 @@
       e.preventDefault();
       var name = document.getElementById('c-name');
       var email = document.getElementById('c-email');
-      var message = document.getElementById('c-message');
-      var firstEmpty = !name.value.trim() ? name : !email.value.trim() ? email : !message.value.trim() ? message : null;
+      var service = document.getElementById('c-service');
+      var firstEmpty = !name.value.trim() ? name : !email.value.trim() ? email : !service.value.trim() ? service : null;
       if (firstEmpty) { firstEmpty.focus(); return; }
       form.style.display = 'none';
       confirm.classList.add('show');
