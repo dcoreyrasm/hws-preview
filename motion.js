@@ -107,4 +107,38 @@
       observed.forEach(function (el) { el.classList.add('is-visible'); });
     }, 3500);
   });
+
+  // ------------------------------------------------------------------------
+  // Mobile navigation toggle
+  // The nav links collapse into a dropdown below ~980px; this opens/closes it.
+  // ------------------------------------------------------------------------
+  ready(function () {
+    var nav = document.querySelector('.nav');
+    var btn = document.getElementById('navToggle');
+    if (!nav || !btn) return;
+
+    function close() {
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Open menu');
+    }
+    function toggle() {
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+
+    btn.addEventListener('click', toggle);
+    // Close after choosing a destination or pressing Escape, and when the
+    // viewport grows back to the desktop layout.
+    nav.querySelectorAll('.nav-links a').forEach(function (a) {
+      a.addEventListener('click', close);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 980) close();
+    });
+  });
 })();

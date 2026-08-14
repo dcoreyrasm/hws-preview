@@ -78,7 +78,6 @@
   .nav-links { display: flex; gap: 34px; font-size: 0.78rem; letter-spacing: 0.05em; list-style: none; margin: 0; padding: 0; text-transform: uppercase; }
   .nav-links a { text-decoration: none; color: var(--muted); transition: color 0.25s ease; }
   .nav-links a:hover { color: var(--gold-soft); }
-  @media (max-width: 920px) { .nav-links { display: none; } }
   .nav-cta {
     font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--gold);
     color: var(--gold-soft); padding: 12px 24px; text-decoration: none; font-weight: 600;
@@ -97,6 +96,39 @@
   .theme-toggle .icon-moon { display: none; }
   [data-theme="dark"] .theme-toggle .icon-sun { display: none; }
   [data-theme="dark"] .theme-toggle .icon-moon { display: block; }
+
+  .nav-toggle {
+    display: none; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--gold-dim);
+    background: transparent; color: var(--gold-soft); align-items: center; justify-content: center;
+    cursor: pointer; flex-shrink: 0; transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .nav-toggle:hover { border-color: var(--gold); background: rgba(198,154,84,0.1); }
+  .nav-toggle svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+  .nav-toggle .icon-close { display: none; }
+  .nav.open .nav-toggle .icon-menu { display: none; }
+  .nav.open .nav-toggle .icon-close { display: block; }
+  .nav-links .reserve-item { display: none; }
+
+  @media (max-width: 980px) {
+    .nav { position: relative; flex-wrap: wrap; }
+    .nav-toggle { display: inline-flex; }
+    .nav-links {
+      display: flex; flex-direction: column; align-items: stretch; gap: 0;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: #101012; box-shadow: 0 24px 40px -20px rgba(0, 0, 0, 0.6);
+      border-bottom: 1px solid var(--line-soft); padding: 6px 0; margin: 0;
+      max-height: 0; overflow: hidden; opacity: 0; pointer-events: none;
+      transition: max-height 0.38s cubic-bezier(0.16, 0.8, 0.24, 1), opacity 0.3s ease;
+    }
+    .nav-links a { display: block; width: 100%; padding: 15px 40px; font-size: 0.82rem; }
+    .nav.open .nav-links { max-height: 80vh; opacity: 1; pointer-events: auto; }
+    .nav-links .reserve-item { display: block; margin-top: 4px; border-top: 1px solid var(--line-soft); }
+    .nav-links .reserve-item a { color: var(--gold-soft); font-weight: 600; letter-spacing: 0.08em; }
+  }
+  @media (max-width: 420px) {
+    .nav { padding-left: 22px; padding-right: 22px; }
+    .nav-cta { display: none; }
+  }
 
   .hero { position: relative; background: var(--bg); color: var(--ivory); padding: 120px 40px 140px; overflow: hidden; }
   .hero::before {
@@ -235,13 +267,14 @@
       <span class="mono"><svg viewBox="0 0 24 24"><path d="M6 4v16M18 4v16M6 12h12" stroke-linecap="round"/></svg></span>
       <div class="wordmark">HWS<small>by Danielle</small></div>
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="primary-nav">
       <li><a href="about.html">About</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="experience.html">The Experience</a></li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="reviews.html">Reviews</a></li>
       <li><a href="faq.html">FAQ</a></li>
+      <li class="reserve-item"><a href="https://hwsbydanni.as.me" target="_blank" rel="noopener">Reserve Appointment</a></li>
     </ul>
     <div class="nav-right">
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode">
@@ -249,6 +282,10 @@
         <svg class="icon-moon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></svg>
       </button>
       <a class="nav-cta" href="https://hwsbydanni.as.me" target="_blank" rel="noopener">Reserve Appointment</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
+        <svg class="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </nav>
 </header>
