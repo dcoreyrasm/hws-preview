@@ -112,6 +112,9 @@
   @media (max-width: 540px) { .step-body { padding-left: 0; margin-top: 14px; } }
   .step-why { margin: 6px 0 16px; font-size: 0.94rem; color: var(--muted); }
   .step-why .flag { color: var(--teal); font-weight: 600; }
+  .substeps { margin: 12px 0 0; padding-left: 20px; }
+  .substeps li { font-size: 0.92rem; color: var(--muted); margin: 7px 0; line-height: 1.5; }
+  .substeps li b { color: var(--ink); font-weight: 600; }
 
   .open-btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--gold-ink); border: 1px solid var(--gold); background: transparent; padding: 10px 18px; border-radius: 100px; text-decoration: none; transition: background 0.2s ease, color 0.2s ease; }
   .open-btn:hover { background: var(--gold); color: var(--brand-bg); }
@@ -294,11 +297,17 @@
         <span class="chip chip-free">Free</span>
       </div>
       <div class="step-body">
-        <p class="step-why">Your website lives on GitHub. Create a free account, then <b>add Darice as a collaborator</b> so she can move your site over and connect your domain &mdash; you stay the owner. In GitHub: <b>Settings &rarr; Collaborators &rarr; Add people</b>, and invite <b>dcoreyrasm</b>.</p>
+        <p class="step-why">Your website lives on GitHub. Here you'll make a free account and a home for your site, then hand Darice the keys &mdash; you stay the owner.</p>
+        <ol class="substeps">
+          <li><b>Create a free account</b> (use the button below).</li>
+          <li><b>Create a repository</b> &mdash; the home for your site's files. Click the <b>+</b> at the top-right &rarr; <b>New repository</b>, name it <b>hwsbydanni</b>, choose <b>Public</b>, then <b>Create repository</b>.</li>
+          <li><b>Add Darice</b> so she can move your site in and connect your domain. In that repository: <b>Settings &rarr; Collaborators &rarr; Add people</b>, and invite <b>dcoreyrasm</b>.</li>
+        </ol>
         <a class="open-btn" href="https://github.com/signup" target="_blank" rel="noopener">Create a GitHub account <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         <div class="fields">
           <div class="field"><label>Your GitHub username</label><input data-key="github_user" data-label="GitHub username" type="text" placeholder="e.g. hwsbydanni" /></div>
-          <div class="field"><label>Added Darice (dcoreyrasm) as a collaborator?</label><input data-key="github_collab" data-label="Darice added as GitHub collaborator" type="text" placeholder="Yes / need help" /></div>
+          <div class="field"><label>The repository name you created</label><input data-key="github_repo" data-label="GitHub repository name" type="text" value="hwsbydanni" placeholder="hwsbydanni" /></div>
+          <div class="field full"><label>Added Darice (dcoreyrasm) as a collaborator?</label><input data-key="github_collab" data-label="Darice added as GitHub collaborator" type="text" placeholder="Yes / need help" /></div>
         </div>
         <div class="done-row"><input type="checkbox" data-done id="d3" /><label for="d3">Mark this step done</label></div>
       </div>
