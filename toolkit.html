@@ -152,6 +152,17 @@
   .costs-band h2 { font-size: clamp(1.4rem, 3.4vw, 1.85rem); margin: 10px 0 20px; }
   .costs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
   @media (max-width: 620px) { .costs { grid-template-columns: 1fr; } }
+
+  /* Payoff — what she can just ask, once set up */
+  .payoff { margin-top: 40px; padding: 30px 30px 34px; background: var(--brand-surface); color: var(--ivory); border: 1px solid rgba(198,154,84,0.24); border-radius: 6px; }
+  .payoff .eyebrow { color: var(--gold-soft); }
+  .payoff h2 { color: var(--ivory); font-size: clamp(1.4rem, 3.4vw, 1.9rem); margin: 10px 0 6px; }
+  .payoff h2 em { color: var(--gold-soft); }
+  .payoff .sub { color: var(--muted-dark); font-size: 0.94rem; margin: 0 0 20px; max-width: 62ch; }
+  .asks { display: flex; flex-wrap: wrap; gap: 12px; }
+  .ask-chip { background: var(--brand-bg); border: 1px solid rgba(198,154,84,0.28); border-radius: 100px; padding: 11px 20px; font-family: var(--font-display); font-style: italic; font-size: 0.98rem; color: var(--ivory); }
+  .ask-chip::before { content: "\201C"; color: var(--teal-dark); font-style: normal; margin-right: 3px; }
+  .ask-chip::after { content: "\201D"; color: var(--teal-dark); font-style: normal; margin-left: 2px; }
   .cost-row { display: flex; gap: 14px; align-items: baseline; padding: 16px 20px; background: var(--bg-alt); border: 1px solid var(--line-soft); border-radius: 4px; }
   .cost-amt { font-family: var(--font-display); font-size: 1.15rem; flex: none; min-width: 5em; }
   .cost-row.is-free .cost-amt { color: var(--teal); }
@@ -346,6 +357,20 @@
       <div class="cost-row is-cost"><span class="cost-amt">~$15/yr</span><p><b>Your domain.</b> About fifteen dollars for the whole year &mdash; the one new cost.</p></div>
       <div class="cost-row is-free"><span class="cost-amt">In place</span><p><b>Acuity scheduling.</b> You already have it &mdash; nothing new to add, and no duplicate tool.</p></div>
       <div class="cost-row is-cost"><span class="cost-amt">~3%</span><p><b>Card processing</b> &mdash; a small cut only when a client pays a deposit through Acuity. No new monthly bill.</p></div>
+    </div>
+  </section>
+
+  <section class="payoff">
+    <span class="eyebrow">Once you're set up</span>
+    <h2>You never touch a dashboard &mdash; you <em>just ask</em></h2>
+    <p class="sub">When everything above is connected, this is the kind of thing you'll be able to say in plain words &mdash; and it gets done for you across your tools.</p>
+    <div class="asks">
+      <span class="ask-chip">Add this new client and text me her next opening</span>
+      <span class="ask-chip">Send a summer refresh promo to everyone who hasn't booked since March</span>
+      <span class="ask-chip">Change my holiday hours on the website</span>
+      <span class="ask-chip">Draft a gracious reply to this review</span>
+      <span class="ask-chip">Who's on my calendar next week?</span>
+      <span class="ask-chip">Write my next newsletter and get it ready to send</span>
     </div>
   </section>
 </main>
