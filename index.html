@@ -243,7 +243,12 @@
   .trans-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   @media (max-width: 780px) { .trans-grid { grid-template-columns: repeat(2, 1fr); } }
   .trans-frame { position: relative; aspect-ratio: 3/4; background: linear-gradient(160deg, #201F1D, #121110); }
-  .trans-frame span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-style: italic; color: #5C5850; font-size: 0.76rem; text-align: center; padding: 0 12px; }
+  .trans-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .trans-frame .ph-slot { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 18px; text-align: center; }
+  .trans-frame .ph-slot::before { content: ""; position: absolute; inset: 16px; border: 1px dashed rgba(198,154,84,0.32); transition: inset 0.6s ease, border-color 0.6s ease; }
+  .trans-frame:hover .ph-slot::before { inset: 12px; border-color: rgba(228,201,141,0.5); }
+  .trans-frame .ph-icon { width: 30px; height: 30px; stroke: var(--gold-dim); fill: none; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; opacity: 0.85; position: relative; }
+  .trans-frame .ph-slot em { font-family: 'Fraunces', serif; font-style: italic; color: #706B61; font-size: 0.8rem; letter-spacing: 0.02em; position: relative; }
 
   .final-cta { background: var(--brand-ink); color: var(--ivory); }
   .final-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; }
@@ -454,12 +459,42 @@
     <h2>Real Client <em>Transformations</em></h2>
   </div>
   <div class="trans-grid">
-    <div class="trans-frame"><span>Client Transformation</span></div>
-    <div class="trans-frame"><span>Client Transformation</span></div>
-    <div class="trans-frame"><span>Client Transformation</span></div>
-    <div class="trans-frame"><span>Client Transformation</span></div>
-    <div class="trans-frame"><span>Client Transformation</span></div>
-    <div class="trans-frame"><span>Client Transformation</span></div>
+    <div class="trans-frame">
+      <span class="ph-slot">
+        <svg class="ph-icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-4.5L8 19"/></svg>
+        <em>Client Transformation</em>
+      </span>
+    </div>
+    <div class="trans-frame">
+      <span class="ph-slot">
+        <svg class="ph-icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-4.5L8 19"/></svg>
+        <em>Client Transformation</em>
+      </span>
+    </div>
+    <div class="trans-frame">
+      <span class="ph-slot">
+        <svg class="ph-icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-4.5L8 19"/></svg>
+        <em>Client Transformation</em>
+      </span>
+    </div>
+    <div class="trans-frame">
+      <span class="ph-slot">
+        <svg class="ph-icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-4.5L8 19"/></svg>
+        <em>Client Transformation</em>
+      </span>
+    </div>
+    <div class="trans-frame">
+      <span class="ph-slot">
+        <svg class="ph-icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-4.5L8 19"/></svg>
+        <em>Client Transformation</em>
+      </span>
+    </div>
+    <div class="trans-frame">
+      <span class="ph-slot">
+        <svg class="ph-icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-4.5L8 19"/></svg>
+        <em>Client Transformation</em>
+      </span>
+    </div>
   </div>
 </section>
 
