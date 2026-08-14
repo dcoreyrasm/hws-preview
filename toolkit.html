@@ -210,7 +210,7 @@
     </div>
     <p class="eyebrow rise" style="animation-delay:.05s">Let's set your studio up together</p>
     <h1 class="rise" style="animation-delay:.1s">Your Studio <em>Setup</em></h1>
-    <p class="lede rise" style="animation-delay:.18s">Seven small steps, one at a time. For each one, click through to the site, do the quick task, and type back what it gives you. When you're done, send it all to Darice with one tap &mdash; and the rest gets wired up for you behind the scenes.</p>
+    <p class="lede rise" style="animation-delay:.18s">Eight small steps, one at a time. For each one, click through to the site, do the quick task, and type back what it gives you. When you're done, send it all to Darice with one tap &mdash; and the rest gets wired up for you behind the scenes.</p>
   </div>
 </header>
 
@@ -225,7 +225,7 @@
   <div class="progress">
     <div class="progress-row">
       <span class="eyebrow">Your progress</span>
-      <span id="progressLabel">0 of 7 steps done</span>
+      <span id="progressLabel">0 of 8 steps done</span>
     </div>
     <div class="bar"><span id="pct"></span></div>
   </div>
@@ -349,6 +349,22 @@
       </div>
     </article>
 
+    <article class="step" data-step="8">
+      <div class="step-head">
+        <div class="step-num"><span>8</span></div>
+        <div class="step-head-main"><span class="step-tag">Make it match</span><h3 class="step-title">Make everything match (your Messaging Kit)</h3></div>
+        <span class="chip chip-free">With Darice</span>
+      </div>
+      <div class="step-body">
+        <p class="step-why">Your website, Google, Square, and social should all tell the same story. Your <b>Messaging Kit</b> has the exact wording for each place and marks what to update or retire &mdash; Darice will help you apply it so a new client sees <em>one</em> consistent studio everywhere. Have a look so you know the plan.</p>
+        <a class="open-btn" href="https://www.daricecorey.com/hws-preview/messaging-kit.html" target="_blank" rel="noopener">Open your Messaging Kit <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <div class="fields">
+          <div class="field full"><label>Anything you'd word differently? (optional)</label><input data-key="brand_notes" data-label="Brand/wording notes" type="text" placeholder="Tell Darice if any wording doesn't feel like you" /></div>
+        </div>
+        <div class="done-row"><input type="checkbox" data-done id="d8" /><label for="d8">Mark this step done</label></div>
+      </div>
+    </article>
+
   </div>
 
   <section class="handoff" aria-labelledby="handoff-h">
@@ -421,7 +437,7 @@
 
 <script>
   (function () {
-    var KEY = 'hws-setup-v3';
+    var KEY = 'hws-setup-v4';
     var $ = function (s, r) { return (r || document).querySelector(s); };
     var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 

@@ -94,9 +94,16 @@
   .surface-head{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
   .surface-head h3{font-size:1.15rem;}
   .chip{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;padding:5px 10px;border-radius:100px;white-space:nowrap;}
-  .chip-done{color:var(--teal);border:1px solid var(--teal);}
-  .chip-todo{color:var(--gold-ink);border:1px solid var(--gold);}
-  .chip-retire{color:var(--warn);border:1px solid var(--warn);}
+  .chip-done{color:var(--teal);border:1px solid var(--teal);background:rgba(60,128,116,0.10);}
+  .chip-todo{color:var(--gold-ink);border:1px solid var(--gold);background:rgba(198,154,84,0.12);}
+  .chip-retire{color:var(--warn);border:1px solid var(--warn);background:var(--warn-bg);}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-bottom:20px;font-size:0.84rem;color:var(--muted);}
+  .leg{display:inline-flex;align-items:center;gap:8px;}
+  .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media (max-width:640px){.why-grid{grid-template-columns:1fr;}}
+  .why-card{background:var(--bg-card);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:4px;padding:18px 20px;box-shadow:var(--shadow);}
+  .why-card h3{font-size:1.02rem;margin-bottom:5px;}
+  .why-card p{margin:0;font-size:0.9rem;color:var(--muted);line-height:1.55;}
   .surface ul{margin:0;padding-left:20px;}
   .surface li{font-size:0.9rem;color:var(--muted);margin:6px 0;}
   .surface li b{color:var(--ink);font-weight:600;}
@@ -152,6 +159,18 @@
   </section>
 
   <section>
+    <div class="sec-head"><span class="eyebrow">Why this matters</span><h2>One studio, <em>one identity</em></h2>
+      <p>When your website, Google, Square, and social all say the same thing the same way, you stop looking like several different businesses and start looking like <em>the</em> specialist. Consistency is what turns a first impression into trust.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><h3>Recognition</h3><p>A client who finds you on Instagram, then Google, then your site should feel she's in the same place each time &mdash; same name, same look, same promise. Repetition is what makes a brand stick.</p></div>
+      <div class="why-card"><h3>Trust &amp; credibility</h3><p>Matching details across platforms read as "professional and established." Mismatched hours, old photos, or a different pitch read as "is this even the right person?" &mdash; and hesitation loses the booking.</p></div>
+      <div class="why-card"><h3>The right client</h3><p>Saying "natural-looking sew-ins for professional women" everywhere draws the client you want and gently filters the rest &mdash; so your inquiries are better matched before they ever reach you.</p></div>
+      <div class="why-card"><h3>Found more easily</h3><p>Search engines and AI assistants trust a business whose name, category, and details agree across the web. One consistent story helps you show up &mdash; one clear booking link means no one gets lost on the way.</p></div>
+    </div>
+  </section>
+
+  <section>
     <div class="sec-head"><span class="eyebrow">Canonical copy</span><h2>The <em>words</em></h2>
       <p>Tap <b>Copy</b> and paste. Pick the length that fits the field you're filling.</p>
     </div>
@@ -198,15 +217,22 @@
   </section>
 
   <section>
-    <div class="sec-head"><span class="eyebrow">Apply it</span><h2>Each place, <em>one by one</em></h2></div>
+    <div class="sec-head"><span class="eyebrow">Apply it</span><h2>Each place, <em>one by one</em></h2>
+      <p>Every platform is marked with what it needs. Work down the list until they all tell the same story.</p>
+    </div>
+    <div class="legend">
+      <span class="leg"><span class="chip chip-done">Done</span> already aligned</span>
+      <span class="leg"><span class="chip chip-todo">Update</span> change the copy to match</span>
+      <span class="leg"><span class="chip chip-retire">Retire</span> take it down</span>
+    </div>
     <div class="apply">
       <div class="surface">
-        <div class="surface-head"><h3>New website</h3><span class="chip chip-done">Primary &middot; done</span></div>
+        <div class="surface-head"><h3>New website</h3><span class="chip chip-done">Done</span></div>
         <ul><li>The source of truth &mdash; already live and aligned. Everything else should match it.</li><li>Becomes the main site at Danielle's own domain; the others point here.</li></ul>
       </div>
 
       <div class="surface">
-        <div class="surface-head"><h3>Google Business Profile</h3><span class="chip chip-todo">To update</span></div>
+        <div class="surface-head"><h3>Google Business Profile</h3><span class="chip chip-todo">Update</span></div>
         <ul>
           <li>Name: <b>exact real name only</b> (no keywords &mdash; avoids suspension). Primary category <b>Hair salon</b> (or "Hair extension technician" if offered); add "Hairdresser," "Beauty salon."</li>
           <li>Description: paste <b>Long</b>. Services: the list above. Hours as above. Booking: Acuity.</li>
@@ -217,7 +243,7 @@
       </div>
 
       <div class="surface">
-        <div class="surface-head"><h3>Square site</h3><span class="chip chip-todo">Payments only</span></div>
+        <div class="surface-head"><h3>Square site</h3><span class="chip chip-todo">Update</span></div>
         <ul>
           <li>Keep it <b>only if she still takes card payments through it.</b> Don't run it as a second website.</li>
           <li>Hero &rarr; Headline + Tagline. Intro &rarr; <b>Medium</b>. Services &rarr; the list above. Footer &rarr; Footer blurb.</li>
@@ -236,7 +262,7 @@
       </div>
 
       <div class="surface">
-        <div class="surface-head"><h3>Facebook page</h3><span class="chip chip-todo">To update</span></div>
+        <div class="surface-head"><h3>Facebook page</h3><span class="chip chip-todo">Update</span></div>
         <ul>
           <li>Intro &rarr; <b>Facebook intro</b>; Our Story &rarr; <b>Medium/Long</b>. Category: Hair salon.</li>
           <li>"Book Now" button &rarr; Acuity. Pin a post announcing the sew-in focus.</li>
@@ -244,7 +270,7 @@
       </div>
 
       <div class="surface">
-        <div class="surface-head"><h3>Instagram &amp; TikTok</h3><span class="chip chip-todo">To update</span></div>
+        <div class="surface-head"><h3>Instagram &amp; TikTok</h3><span class="chip chip-todo">Update</span></div>
         <ul><li>Paste the bios above. Single link &rarr; Acuity now, new site once the domain is live.</li></ul>
       </div>
     </div>
